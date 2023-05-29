@@ -1,0 +1,6 @@
+haha this is a line lol
+\0 \n this is line too :D
+third line of the file!
+this '\n' one '\n' is '\n' is '\n' tricky '\n' maybe...
+
+^^^^ that was emty line
