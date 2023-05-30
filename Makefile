@@ -6,23 +6,15 @@
 #    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/05/29 20:39:00 by smelicha         ###   ########.fr        #
+#    Updated: 2023/05/30 20:10:36 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libftprintf.a
+NAME	= getnextline.a
 
 SRCDIR = ./src/
 
-SRC = $(shell find . -name "ft_printf.c" -o -name "ft_datainit.c" -o -name \
-					"ft_check_flag.c" -o -name "ft_print_character.c" -o -name \
-					"ft_print_decimal.c" -o -name "ft_print_flag.c" -o -name \
-					"ft_print_hex_low.c" -o -name "ft_print_hex_up.c" -o -name \
-					"ft_print_percent.c" -o -name "ft_print_decimal_helper.c" -o -name\
-					"ft_print_pointer.c" -o -name "ft_print_string.c" -o -name \
-					"ft_print_unsigned_int.c" -o -name "ft_type_resolve.c" -o -name \
-					"ft_char_comp.c" -o -name "ft_utoa.c" -o -name \
-					"ft_hextoa.c" -o -name "ft_print_pad.c" -type f)
+SRC = $(shell find . -name "main.c")
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g
