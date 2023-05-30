@@ -8,22 +8,14 @@ int	main(void)
 
 	i = 0;
 	fd = open("test.txt", O_RDONLY);
-	while (i < 5)
+	printf("File descriptor : %d\n\n", fd);
+	while (i < 200)
 	{
 		buffer = get_next_line(fd);
 		printf("%s", buffer);
 		free(buffer);
 		i++;
 	}
-/*	buffer = buffer_start;
-	while (*buffer != '\n')
-	{
-		if (*buffer == '\n')
-			printf("found a new line!\n");
-		printf("%c", *buffer);
-		buffer++;
-		i--;
-	}*/
 	close(fd);
 	return (0);
 }
