@@ -6,7 +6,7 @@
 #    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/05/30 21:30:50 by smelicha         ###   ########.fr        #
+#    Updated: 2023/05/30 23:31:42 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ maintest: all
 
 maindebug: all
 	@echo "~~~ Testing with main function ~~~"
-	@$(CC) $(NAME) libft/libft.a main.c -g $(FLAGS) -o prog
+	@$(CC) $(NAME) main.c -g $(FLAGS) -o prog
 	@./prog
 
 .PHONY: all clean fclean re test bonus maintest maindebug

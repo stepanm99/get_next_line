@@ -12,6 +12,10 @@ int	main(void)
 	while (i < 200)
 	{
 		buffer = get_next_line(fd);
+		if (buffer == NULL)
+		{
+			free(buffer);
+		}
 		printf("%s", buffer);
 		free(buffer);
 		i++;

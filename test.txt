@@ -1,42 +1,14 @@
-haha this is a line lol
-\0 \n this is line too :D
-third line of the file!
-this '\n' one '\n' is '\n' is '\n' tricky '\n' maybe...
+1
+2
+3
 
-^^^^ that was emty line
-haha this is a line lol
-\0 \n this is line too :D
-third line of the file!
-this '\n' one '\n' is '\n' is '\n' tricky '\n' maybe...
+4
 
-^^^^ that was emty line
-haha this is a line lol
-\0 \n this is line too :D
-third line of the file!
-this '\n' one '\n' is '\n' is '\n' tricky '\n' maybe...
 
-^^^^ that was emty line
-haha this is a line lol
-\0 \n this is line too :D
-third line of the file!
-this '\n' one '\n' is '\n' is '\n' tricky '\n' maybe...
 
-^^^^ that was emty line
-haha this is a line lol
-\0 \n this is line too :D
-third line of the file!
-this '\n' one '\n' is '\n' is '\n' tricky '\n' maybe...
-
-^^^^ that was emty line
-haha this is a line lol
-\0 \n this is line too :D
-third line of the file!
-this '\n' one '\n' is '\n' is '\n' tricky '\n' maybe...
-
-^^^^ that was emty line
-haha this is a line lol
-\0 \n this is line too :D
-third line of the file!
-this '\n' one '\n' is '\n' is '\n' tricky '\n' maybe...
-
-^^^^ that was emty line
+5
+6
+7
+8
+9
+10
