@@ -6,7 +6,7 @@
 #    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/05/30 20:10:36 by smelicha         ###   ########.fr        #
+#    Updated: 2023/05/30 21:26:10 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= getnextline.a
 
 SRCDIR = ./src/
 
-SRC = $(shell find . -name "main.c")
+SRC = $(shell find . -name "get_next_line.c")
 
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g
@@ -25,8 +25,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Linking $@"
-	@make -C ./libft
-	@cp ./libft/libft.a $(NAME)
 	@ar rcs $(NAME) $(OBJ)
 	@echo "Done!"
 
@@ -50,7 +48,7 @@ bonus: all
 
 maintest: all
 	@echo "~~~ Testing with main function ~~~"
-	@$(CC) $(SRC) libft/libft.a main.c $(FLAGS)
+	@$(CC) $(SRC) main.c $(FLAGS)
 	@./a.out
 
 maindebug: all

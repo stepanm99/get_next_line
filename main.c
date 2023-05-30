@@ -1,26 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-
-
+#include "src/get_next_line.h"
 
 int	main(void)
 {
-	char	*buffer;
-	char	*buffer_start;
 	int		fd;
+	char	*buffer;
+	int		i;
 
-	buffer = malloc(1024);
-	if (buffer == NULL)
-		return (0);
-	buffer_start = buffer;
+	i = 0;
 	fd = open("test.txt", O_RDONLY);
-	while (*(buffer - 1) != '\n')
+	while (i < 5)
 	{
-		read(fd, buffer, 1);
-		printf("%c", *buffer);
-		buffer++;
+		buffer = get_next_line(fd);
+		printf("%s", buffer);
+		free(buffer);
+		i++;
 	}
 /*	buffer = buffer_start;
 	while (*buffer != '\n')
@@ -31,5 +24,6 @@ int	main(void)
 		buffer++;
 		i--;
 	}*/
+	close(fd);
 	return (0);
 }
