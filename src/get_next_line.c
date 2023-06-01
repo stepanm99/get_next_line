@@ -6,34 +6,38 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:24:58 by smelicha          #+#    #+#             */
-/*   Updated: 2023/05/30 23:48:38 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:39:18 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
-
 char	*get_next_line(int fd)
 {
-	char	*buffer;
-	char	*buffer_start;
-	static int		eoflag = 1;
+	char			*buffer;
+	char			*buffer_start;
+	static int		eoflag;
+	int				i;
 
-	buffer = malloc(1024);
+	eoflag = 1;
+	i = 0;
+	buffer = malloc(BUFFER_SIZE + 1);
 	if (buffer == NULL)
 		return (0);
 	buffer_start = buffer;
-	while (*(buffer - 1) != '\n' && eoflag)
+	while ((*(buffer - 1) != '\n' && eoflag) && i <= BUFFER_SIZE)
 	{
 		eoflag = read(fd, buffer, 1);
 		if (eoflag == 0)
 		{
+			*(buffer_start + (i + 1)) = '\0';
 			return (buffer_start);
 		}
 		*(buffer + 1) = '\0';
 		buffer++;
+		i++;
 	}
+	*(buffer_start + (i + 1)) = '\0';
 	return (buffer_start);
 }
 

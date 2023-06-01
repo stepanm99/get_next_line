@@ -25,8 +25,8 @@
 		"type": "lldb",
 		"request": "launch",
 		"args": [],
-		"cwd": "/Users/smelicha/Documents/ft_printf/ft_printf",
-		"program": "/Users/smelicha/Documents/ft_printf/ft_printf/prog"
+		"cwd": "/Users/smelicha/Documents/in progress/get_nextline/get_next_line",
+		"program": "/Users/smelicha/Documents/in progress/get_nextline/get_next_line"
 	  }
 	]
 }

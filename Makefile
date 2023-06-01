@@ -6,7 +6,7 @@
 #    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/05/30 23:31:42 by smelicha         ###   ########.fr        #
+#    Updated: 2023/06/01 19:39:05 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCDIR = ./src/
 SRC = $(shell find . -name "get_next_line.c")
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=10000
 
 OBJ	= $(SRC:.c=.o)
 
