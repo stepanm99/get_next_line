@@ -8,6 +8,7 @@
 typedef struct	s_fdlist
 {
 	int				fd;
+//	s_fdlist	*prev;
 	struct s_fdlist	*next;
 }				t_fdlist;
 

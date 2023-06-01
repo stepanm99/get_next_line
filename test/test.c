@@ -16,12 +16,13 @@ int main(void)
 		n++;
 	}
 	data->link = data->first_link;
-	while(data->link->next != NULL)
+	while(data->link->next)
 	{
 		printf("From list: %d\n", data->link->fd);
 		data->link = data->link->next;
 	}
 	printf("\nbefore deleting list\n");
 	delete_list(data->first_link);
+	free(data);
 	return (0);
 }

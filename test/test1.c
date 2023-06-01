@@ -36,13 +36,13 @@ void delete_list(t_fdlist *first_link)
 	current = first_link;
 	next = first_link->next;
 	free(first_link);
-	next = current->next;
+	current = current->next;
 	while (current->next != NULL)
 	{
+		printf("pointer to free: %p\n", current);
 		next = current->next;
 		if (current != NULL)
 		{
-			printf("pointer to free: %p\n", current);
 			free(current);
 		}
 		current = next;
