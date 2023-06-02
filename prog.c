@@ -7,12 +7,14 @@ int	main(void)
 	int		fd;
 	char	*buffer;
 	int		i;
+	t_data	*data;
 
 	i = 0;
+	data = malloc(sizeof(t_data));
 	fd = open("test.txt", O_RDONLY);
 	printf("File descriptor : %d\n\n", fd);
 	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
-	while (i < 200)
+	while (i < 3)
 	{
 		buffer = get_next_line(fd);
 		if (buffer == NULL)
@@ -25,7 +27,7 @@ int	main(void)
 		i++;
 	}
 	close(fd);
-	check_leaks();
+//	check_leaks();
 	return (0);
 }
 //*/
@@ -39,11 +41,11 @@ int main(void)
 	data = malloc(sizeof(t_data));
 	data->first_link = new_list(n);
 	data->last_link = data->first_link;
-	while (n < 1)
+	while (n < 10)
 	{
-		data->last_link = add_link(data->last_link, n);
 		printf("return of the function: %d\n", fcn());
 		n++;
+		data->last_link = add_link(data->last_link, n);
 	}
 	data->link = data->first_link;
 	while(data->link->next)

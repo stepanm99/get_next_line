@@ -6,7 +6,7 @@
 #    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/06/02 22:00:37 by smelicha         ###   ########.fr        #
+#    Updated: 2023/06/02 22:26:31 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ test: all
 
 bonus: all
 
-maintest: FLAGS += -D BUFFER_SIZE=10000
+maintest: FLAGS += -D BUFFER_SIZE=10
 maintest: all
 	@echo "~~~ Testing with main function ~~~"
 	@$(CC) $(SRC) prog.c $(FLAGS) -o prog
