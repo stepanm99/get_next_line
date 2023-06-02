@@ -1,5 +1,35 @@
-#include "testheader.h"
+#include "get_next_line.h"
 
+void	check_leaks();
+//*
+int	main(void)
+{
+	int		fd;
+	char	*buffer;
+	int		i;
+
+	i = 0;
+	fd = open("test.txt", O_RDONLY);
+	printf("File descriptor : %d\n\n", fd);
+	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
+	while (i < 200)
+	{
+		buffer = get_next_line(fd);
+		if (buffer == NULL)
+		{
+			free(buffer);
+			break ;
+		}
+		printf("%s", buffer);
+		free(buffer);
+		i++;
+	}
+	close(fd);
+	check_leaks();
+	return (0);
+}
+//*/
+/*
 int main(void)
 {
 	int	n;
@@ -9,7 +39,7 @@ int main(void)
 	data = malloc(sizeof(t_data));
 	data->first_link = new_list(n);
 	data->last_link = data->first_link;
-	while (n < 10)
+	while (n < 1)
 	{
 		data->last_link = add_link(data->last_link, n);
 		printf("return of the function: %d\n", fcn());
@@ -24,5 +54,6 @@ int main(void)
 	printf("\nbefore deleting list\n");
 	delete_list(data->first_link);
 	free(data);
+	check_leaks();
 	return (0);
-}
+}//*/

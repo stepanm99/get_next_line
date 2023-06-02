@@ -1,4 +1,4 @@
-#include "testheader.h"
+#include "get_next_line.h"
 
 int	fcn(void)
 {
@@ -33,18 +33,33 @@ void delete_list(t_fdlist *first_link)
 	t_fdlist	*next;
 	t_fdlist	*current;
 
-	current = first_link;
-	next = first_link->next;
-	free(first_link);
-	current = current->next;
-	while (current->next != NULL)
+	current = NULL;
+	if (first_link && first_link->next)
+		current = first_link->next;
+	while (current)
 	{
-		printf("pointer to free: %p\n", current);
+		printf("Pointer to free: %p\n", current);
 		next = current->next;
-		if (current != NULL)
-		{
-			free(current);
-		}
+		current->fd = 0;
+		free(current);
 		current = next;
 	}
+	free(first_link);
 }
+
+/*void	free_stack(t_stack *stack)
+{
+	t_node	*curr;
+	t_node	*last;
+
+	curr = NULL;
+	if (stack && stack->tail)
+		curr = stack->tail;
+	while (curr)
+	{
+		last = curr->next;
+		free(curr);
+		curr = last;
+	}
+	free(stack);
+}*/

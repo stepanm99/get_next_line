@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:22:26 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/01 19:28:35 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:21:27 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct s_fdlist
 {
-	int				*fd;
+	int				fd;
 	struct s_fdlist	*next;
 }					t_fdlist;
 
@@ -38,6 +38,20 @@ typedef struct s_gnldata
 {
 	int		test;
 }	t_gnldata;
+
+typedef struct	s_data
+{
+	t_fdlist	*first_link;
+	t_fdlist	*last_link;
+	t_fdlist	*link;
+}				t_data;
+
+
+int	fcn(void);
+t_fdlist *new_list(int value);
+t_fdlist *add_link(t_fdlist *current, int value);
+void delete_list(t_fdlist *first_link);
+
 
 char	*get_next_line(int fd);
 #endif
