@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:22:26 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/02 22:26:43 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/03 01:01:11 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ typedef struct s_gnldata
 
 typedef struct	s_data
 {
-	t_fdlist	*first_link;
-	t_fdlist	*last_link;
-	t_fdlist	*link;
+	char	*remains;
+	int		big_buffer_small_file;
+	int		iter;
+	int		callnr;
 }				t_data;
 
 
