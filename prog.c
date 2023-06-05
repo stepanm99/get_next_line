@@ -27,7 +27,8 @@ int	main(void)
 		i++;
 	}
 	close(fd);
-//	check_leaks();
+	free(data);
+	check_leaks();
 	return (0);
 }
 //*/

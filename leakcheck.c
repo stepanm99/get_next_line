@@ -27,6 +27,8 @@ static void print_allocs();
 
 void check_leaks() {
 	printf("\nChecking leaks\n");
+	if (malloc_counter == 0)
+		printf("\nLeakfree :) (probably)\n");
     if (malloc_counter != 0) {
         int total = total_leaks_size();
         fprintf(stderr,
