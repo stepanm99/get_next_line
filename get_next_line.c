@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:24:58 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/06 00:07:42 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/06 00:55:05 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,15 @@
 /*copies one buffer to another*/
 void	buffer_to_buffer(char *buffer1, char *buffer2)
 {
+	int	i;
 
+	while (*(buffer2 + i) != '\0')
+	{
+		*(buffer1 + i) = *(buffer2 + i);
+		i++;
+	}
+	i++;
+	*(buffer1 + i) = '\0';
 }
 
 
@@ -105,7 +113,7 @@ char	*read_fd(int fd, char *buffer)
 	temp_buffer = malloc(BUFFER_SIZE + 1);
 	if (!temp_buffer)
 		return (NULL);
-	*(temp_buffer + 1) = '\0';
+	*(temp_buffer + (BUFFER_SIZE + 1)) = '\0';
 	while (!check_new_line(buffer))
 	{
 		read_return = read(fd, temp_buffer, BUFFER_SIZE);
@@ -119,6 +127,7 @@ char	*read_fd(int fd, char *buffer)
 			break ;
 		}
 	}
+	free(temp_buffer);
 	return (buffer);
 }
 
@@ -139,8 +148,6 @@ char *get_next_line(fd)
 	printf("\nread buffer: \n%s\n\n", rdbuffer);
 	printf("bytes read: %d\n", bytes_read);
 	return (rdbuffer);
-
-
 
 
 
