@@ -6,20 +6,23 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:24:58 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/06 22:07:46 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:15:28 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 /**/
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	char		*resbuffer;
 	static char	*persbuffer;
 
 	if (!persbuffer)
-		persbuffer = malloc(BUFFER_SIZE);
+	{
+		persbuffer = malloc(BUFFER_SIZE + 1);
+		*(persbuffer + BUFFER_SIZE) = '\0';
+	}
 	if (!check_new_line(persbuffer))
 		persbuffer = read_fd(fd, persbuffer);
 	resbuffer = line_from_buffer(persbuffer);
@@ -41,9 +44,10 @@ char	*line_remove(char *buffer)
 	line_length = check_new_line(buffer);
 	buffer_len = buffer_length(buffer);
 	temp_buffer = malloc((buffer_len - line_length) + 1);
+	*(temp_buffer + (buffer_len - line_length) + 1) = '\0';
 	if (!temp_buffer)
 		return (NULL);
-	buffer_to_buffer(temp_buffer, (buffer + line_length));
+	buffer_to_buffer(temp_buffer, (buffer + line_length + 1));
 	free (buffer);
 	return (temp_buffer);
 }
@@ -77,7 +81,7 @@ int	buffer_to_buffer(char *buffer1, char *buffer2)
 	int	i;
 
 	i = 0;
-	while (*(buffer2 + i) != '\n')
+	while (*(buffer2 + i))
 	{
 		*(buffer1 + i) = *(buffer2 + i);
 		i++;
@@ -86,7 +90,6 @@ int	buffer_to_buffer(char *buffer1, char *buffer2)
 	*(buffer1 + i) = '\0';
 	return (i);
 }
-
 
 /*counts how long buffer is*/
 int	buffer_length(char *buffer)
@@ -111,6 +114,8 @@ int	check_new_line(char *buffer)
 		return (0);
 	while (*(buffer + i) != '\n' && *(buffer + i) != '\0')
 		i++;
+	if (*(buffer + i) == '\n')
+		i++;
 	if (!*(buffer + i))
 		return (0);
 	return (i);
@@ -127,19 +132,22 @@ returns temp as new buffer
 char	*buffer_add_resize(char *buffer, char *temp_buffer)
 {
 	char	*temp;
-	int	buffer_l;
-	int	temp_buffer_l;
+	int		buffer_l;
+	int		temp_buffer_l;
 
+	temp = NULL;
 	buffer_l = buffer_length(buffer);
 	temp_buffer_l = buffer_length(temp_buffer);
 	temp = malloc(buffer_l + temp_buffer_l + 1);
 	if (!temp)
 		return (NULL);
+	*(temp + (buffer_l + temp_buffer_l)) = '\0';
 	buffer_to_buffer(temp, buffer);
 	free(buffer);
 	buffer_to_buffer((temp + buffer_l), temp_buffer);
 	return (temp);
 }
+
 /*read_fd reads from file descriptor until it finds newline or file is at its end*/
 char	*read_fd(int fd, char *buffer)
 {
