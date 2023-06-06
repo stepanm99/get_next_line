@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:22:26 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/03 01:01:11 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:06:26 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,37 +22,13 @@
 #  define BUFFER_SIZE 10
 # endif
 
-typedef struct s_fdlist
-{
-	int				fd;
-	struct s_fdlist	*next;
-}					t_fdlist;
-
-typedef struct s_bufflist
-{
-	char				*character;
-	struct s_bufflist	*next;
-}					t_bufflist;
-
-typedef struct s_gnldata
-{
-	int		test;
-}	t_gnldata;
-
-typedef struct	s_data
-{
-	char	*remains;
-	int		big_buffer_small_file;
-	int		iter;
-	int		callnr;
-}				t_data;
-
-
-int	fcn(void);
-t_fdlist *new_list(int value);
-t_fdlist *add_link(t_fdlist *current, int value);
-void delete_list(t_fdlist *first_link);
-
-
+char	*read_fd(int fd, char *buffer);
+char	*buffer_add_resize(char *buffer, char *temp_buffer);
+int		check_new_line(char *buffer);
+int		buffer_length(char *buffer);
+void	buffer_to_buffer(char *buffer1, char *buffer2);
+char	*line_from_buffer(char *buffer);
+char	*line_remove(char *buffer);
 char	*get_next_line(int fd);
+
 #endif
