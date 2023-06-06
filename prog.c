@@ -7,10 +7,8 @@ int	main(void)
 	int		fd;
 	char	*buffer;
 	int		i;
-	t_data	*data;
 
 	i = 0;
-	data = malloc(sizeof(t_data));
 	fd = open("test.txt", O_RDONLY);
 	printf("File descriptor : %d\n\n", fd);
 	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
@@ -27,7 +25,6 @@ int	main(void)
 		i++;
 	}
 	close(fd);
-	free(data);
 	check_leaks();
 	return (0);
 }

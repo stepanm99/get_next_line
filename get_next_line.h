@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:22:26 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/06 20:06:26 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:19:23 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 #  define BUFFER_SIZE 10
 # endif
 
-char	*read_fd(int fd, char *buffer);
-char	*buffer_add_resize(char *buffer, char *temp_buffer);
-int		check_new_line(char *buffer);
-int		buffer_length(char *buffer);
-void	buffer_to_buffer(char *buffer1, char *buffer2);
-char	*line_from_buffer(char *buffer);
-char	*line_remove(char *buffer);
 char	*get_next_line(int fd);
+char	*line_remove(char *buffer);
+char	*line_from_buffer(char *buffer);
+int		buffer_to_buffer(char *buffer1, char *buffer2);
+int		buffer_length(char *buffer);
+int		check_new_line(char *buffer);
+char	*buffer_add_resize(char *buffer, char *temp_buffer);
+char	*read_fd(int fd, char *buffer);
 
 #endif

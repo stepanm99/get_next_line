@@ -6,21 +6,41 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:24:58 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/06 20:08:23 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:07:46 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/**/
+char *get_next_line(int fd)
+{
+	char		*resbuffer;
+	static char	*persbuffer;
+
+	if (!persbuffer)
+		persbuffer = malloc(BUFFER_SIZE);
+	if (!check_new_line(persbuffer))
+		persbuffer = read_fd(fd, persbuffer);
+	resbuffer = line_from_buffer(persbuffer);
+	if (resbuffer)
+		persbuffer = line_remove(persbuffer);
+	else
+		return (NULL);
+	return (resbuffer);
+}
+
+/*removes first line found in the buffer and returns realoccated address
+with the remaining data*/
 char	*line_remove(char *buffer)
 {
 	char	*temp_buffer;
 	int		line_length;
-	int		buffer_length;
+	int		buffer_len;
 
 	line_length = check_new_line(buffer);
-	buffer_length = buffer_lenth(buffer);
-	temp_buffer = malloc((buffer_length - line_length) + 1);
+	buffer_len = buffer_length(buffer);
+	temp_buffer = malloc((buffer_len - line_length) + 1);
 	if (!temp_buffer)
 		return (NULL);
 	buffer_to_buffer(temp_buffer, (buffer + line_length));
@@ -28,6 +48,7 @@ char	*line_remove(char *buffer)
 	return (temp_buffer);
 }
 
+/*return first line found in the buffer*/
 char	*line_from_buffer(char *buffer)
 {
 	char	*return_buffer;
@@ -48,18 +69,22 @@ char	*line_from_buffer(char *buffer)
 	return (return_buffer);
 }
 
-/*copies one buffer to another*/
-void	buffer_to_buffer(char *buffer1, char *buffer2)
+/*copies one buffer to another
+buffer2 has to be smaller than buffer1
+returns number of the iterations*/
+int	buffer_to_buffer(char *buffer1, char *buffer2)
 {
 	int	i;
 
-	while (*(buffer2 + i) != '\0')
+	i = 0;
+	while (*(buffer2 + i) != '\n')
 	{
 		*(buffer1 + i) = *(buffer2 + i);
 		i++;
 	}
 	i++;
 	*(buffer1 + i) = '\0';
+	return (i);
 }
 
 
@@ -70,7 +95,7 @@ int	buffer_length(char *buffer)
 
 	i = 0;
 	if (buffer == NULL)
-		return (NULL);
+		return (0);
 	while (*(buffer + i))
 		i++;
 	return (i);
@@ -83,9 +108,11 @@ int	check_new_line(char *buffer)
 
 	i = 0;
 	if (buffer == NULL)
-		return (NULL);
-	while (*(buffer + i) != '\n')
+		return (0);
+	while (*(buffer + i) != '\n' && *(buffer + i) != '\0')
 		i++;
+	if (!*(buffer + i))
+		return (0);
 	return (i);
 }
 
@@ -97,7 +124,7 @@ frees the memory previously alocated to buffer
 copies additional memory from temp_buffer to temporary buffer offset by the length of original buffer
 returns temp as new buffer
 */
-char	*bufer_add_resize(char *buffer, char *temp_buffer)
+char	*buffer_add_resize(char *buffer, char *temp_buffer)
 {
 	char	*temp;
 	int	buffer_l;
@@ -107,13 +134,13 @@ char	*bufer_add_resize(char *buffer, char *temp_buffer)
 	temp_buffer_l = buffer_length(temp_buffer);
 	temp = malloc(buffer_l + temp_buffer_l + 1);
 	if (!temp)
-		return ;
+		return (NULL);
 	buffer_to_buffer(temp, buffer);
 	free(buffer);
 	buffer_to_buffer((temp + buffer_l), temp_buffer);
 	return (temp);
 }
-/*read_fd reads from file descriptor until it find newline or file is at its end*/
+/*read_fd reads from file descriptor until it finds newline or file is at its end*/
 char	*read_fd(int fd, char *buffer)
 {
 	int		read_return;
@@ -123,7 +150,7 @@ char	*read_fd(int fd, char *buffer)
 	temp_buffer = malloc(BUFFER_SIZE + 1);
 	if (!temp_buffer)
 		return (NULL);
-	*(temp_buffer + (BUFFER_SIZE + 1)) = '\0';
+	*(temp_buffer + (BUFFER_SIZE)) = '\0';
 	while (!check_new_line(buffer))
 	{
 		read_return = read(fd, temp_buffer, BUFFER_SIZE);
@@ -139,23 +166,4 @@ char	*read_fd(int fd, char *buffer)
 	}
 	free(temp_buffer);
 	return (buffer);
-}
-
-char *get_next_line(fd)
-{
-	char		*rdbuffer;
-	char		*resbuffer;
-	static char	*persbuffer;
-	int			bytes_read;
-
-	bytes_read = 0;
-	rdbuffer = NULL;
-	rdbuffer = malloc((BUFFER_SIZE + 1));
-	if (!rdbuffer)
-		return (NULL);
-	*(rdbuffer + (BUFFER_SIZE + 1)) = '\0';
-	bytes_read = read(fd, rdbuffer, BUFFER_SIZE);
-	printf("\nread buffer: \n%s\n\n", rdbuffer);
-	printf("bytes read: %d\n", bytes_read);
-	return (rdbuffer);
 }
