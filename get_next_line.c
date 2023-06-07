@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:24:58 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/07 21:57:42 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/07 23:58:36 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ char	*get_next_line(int fd)
 {
 	char		*resbuffer;
 	static char	*persbuffer;
+	int			eoflag;
+	int			*eoflagp;
 
+	eoflag = 1;
+	eoflagp = &eoflag;
 	resbuffer = NULL;
 	if (!persbuffer)
 	{
@@ -25,13 +29,34 @@ char	*get_next_line(int fd)
 		*(persbuffer + BUFFER_SIZE) = '\0';
 	}
 	if (!check_new_line(persbuffer))
-		persbuffer = read_fd(fd, persbuffer);
-	resbuffer = line_from_buffer(persbuffer);
-	if (resbuffer)
+		persbuffer = read_fd(fd, persbuffer, eoflagp);
+	if (eoflag)
+		resbuffer = line_from_buffer(persbuffer);
+	else if (resbuffer && eoflag)
 		persbuffer = line_remove(persbuffer);
+	else if (!eoflag)
+		resbuffer = last_line(persbuffer);
 	else
 		return (NULL);
 	return (resbuffer);
+}
+
+char *last_line(char *buffer)
+{
+	char	*temp;
+	int		bufflen;
+
+	bufflen = buffer_length(buffer);
+	temp = malloc(bufflen + 1);
+	if (!temp)
+	{
+		free(buffer);
+		return (NULL);
+	}
+	*(temp + bufflen) = '\0';
+	buffer_to_buffer(temp, buffer);
+	free(buffer);
+	return (temp);
 }
 
 /*removes first line found in the buffer and returns realoccated address
@@ -49,6 +74,11 @@ char	*line_remove(char *buffer)
 	*(temp_buffer + (buffer_len - line_length) + 1) = '\0';
 	if (!temp_buffer)
 		return (NULL);
+	if (line_length == buffer_len)
+	{
+		free(buffer);
+		return (temp_buffer);
+	}
 //	if (*(buffer + line_length) == '\n')
 //		line_length++;
 	buffer_to_buffer(temp_buffer, (buffer + line_length));
@@ -131,20 +161,6 @@ int	check_new_line(char *buffer)
 		i++;
 	}
 	return (new_line_pos);
-
-
-	/*
-	if (buffer == NULL)
-		return (0);
-	while (*(buffer + i) != '\n' && *(buffer + i) != '\0')
-		i++;
-	if (*(buffer + i) == '\n')
-		i++;
-//	if (*(buffer + i + 1) == '\n' && *(buffer + i) == '\n')
-//		i++;
-	if (!(*(buffer + i) && *(buffer + i - 1) == '\n'))
-		return (0);
-	return (i);*/
 }
 
 /*appends temporary buffer from read_fd to static buffer
@@ -175,7 +191,7 @@ char	*buffer_add_resize(char *buffer, char *temp_buffer)
 }
 
 /*read_fd reads from file descriptor until it finds newline or file is at its end*/
-char	*read_fd(int fd, char *buffer)
+char	*read_fd(int fd, char *buffer, int *eoflagp)
 {
 	int		read_return;
 	char	*temp_buffer;
@@ -189,6 +205,7 @@ char	*read_fd(int fd, char *buffer)
 	while (!check_new_line(buffer))
 	{
 		read_return = read(fd, temp_buffer, BUFFER_SIZE);
+		*eoflagp = read_return;
 		if (read_return == 0)
 			break ;
 		if (!check_new_line(temp_buffer))
