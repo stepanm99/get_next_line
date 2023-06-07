@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:24:58 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/06 23:15:28 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/07 21:57:42 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*get_next_line(int fd)
 	char		*resbuffer;
 	static char	*persbuffer;
 
+	resbuffer = NULL;
 	if (!persbuffer)
 	{
 		persbuffer = malloc(BUFFER_SIZE + 1);
@@ -41,13 +42,16 @@ char	*line_remove(char *buffer)
 	int		line_length;
 	int		buffer_len;
 
+	temp_buffer = NULL;
 	line_length = check_new_line(buffer);
 	buffer_len = buffer_length(buffer);
 	temp_buffer = malloc((buffer_len - line_length) + 1);
 	*(temp_buffer + (buffer_len - line_length) + 1) = '\0';
 	if (!temp_buffer)
 		return (NULL);
-	buffer_to_buffer(temp_buffer, (buffer + line_length + 1));
+//	if (*(buffer + line_length) == '\n')
+//		line_length++;
+	buffer_to_buffer(temp_buffer, (buffer + line_length));
 	free (buffer);
 	return (temp_buffer);
 }
@@ -60,6 +64,7 @@ char	*line_from_buffer(char *buffer)
 	int		i;
 
 	i = 0;
+	return_buffer = NULL;
 	line_length = check_new_line(buffer);
 	if (!line_length)
 		return (NULL);
@@ -69,6 +74,11 @@ char	*line_from_buffer(char *buffer)
 	{
 		*(return_buffer + i) = *(buffer + i);
 		i++;
+	}
+	if (*(buffer + i) == '\n')
+	{
+//		i++;
+		*(return_buffer + i) = *(buffer + i);
 	}
 	return (return_buffer);
 }
@@ -108,17 +118,33 @@ int	buffer_length(char *buffer)
 int	check_new_line(char *buffer)
 {
 	int	i;
+	int	new_line_pos;
 
 	i = 0;
+	new_line_pos = 0;
+	if (!buffer)
+		return (0);
+	while (*(buffer + i) && !new_line_pos)
+	{
+		if (*(buffer + i) == '\n' && !new_line_pos)
+			new_line_pos = i + 1;
+		i++;
+	}
+	return (new_line_pos);
+
+
+	/*
 	if (buffer == NULL)
 		return (0);
 	while (*(buffer + i) != '\n' && *(buffer + i) != '\0')
 		i++;
 	if (*(buffer + i) == '\n')
 		i++;
-	if (!*(buffer + i))
+//	if (*(buffer + i + 1) == '\n' && *(buffer + i) == '\n')
+//		i++;
+	if (!(*(buffer + i) && *(buffer + i - 1) == '\n'))
 		return (0);
-	return (i);
+	return (i);*/
 }
 
 /*appends temporary buffer from read_fd to static buffer
@@ -154,6 +180,7 @@ char	*read_fd(int fd, char *buffer)
 	int		read_return;
 	char	*temp_buffer;
 
+	temp_buffer = NULL;
 	read_return = 0;
 	temp_buffer = malloc(BUFFER_SIZE + 1);
 	if (!temp_buffer)
