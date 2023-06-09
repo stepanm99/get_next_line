@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+/*#include "get_next_line.h"
 
 int	fcn(void)
 {
@@ -81,7 +81,7 @@ void delete_list(t_fdlist *first_link)
 		current = next;
 	}
 	free(first_link);
-}
+}*/
 
 /*void	free_stack(t_stack *stack)
 {

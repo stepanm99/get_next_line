@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:24:58 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/07 23:58:36 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/09 23:28:03 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,23 @@ char	*get_next_line(int fd)
 	}
 	if (!check_new_line(persbuffer))
 		persbuffer = read_fd(fd, persbuffer, eoflagp);
+	if (!persbuffer)
+		return (NULL);
 	if (eoflag)
 		resbuffer = line_from_buffer(persbuffer);
-	else if (resbuffer && eoflag)
+	if (resbuffer && eoflag)
 		persbuffer = line_remove(persbuffer);
-	else if (!eoflag)
+	if (!eoflag)
 		resbuffer = last_line(persbuffer);
-	else
-		return (NULL);
 	return (resbuffer);
 }
 
-char *last_line(char *buffer)
+char	*last_line(char *buffer)
 {
 	char	*temp;
 	int		bufflen;
 
+	temp = NULL;
 	bufflen = buffer_length(buffer);
 	temp = malloc(bufflen + 1);
 	if (!temp)
@@ -96,8 +97,8 @@ char	*line_from_buffer(char *buffer)
 	i = 0;
 	return_buffer = NULL;
 	line_length = check_new_line(buffer);
-	if (!line_length)
-		return (NULL);
+//	if (!line_length)
+//		return (NULL);
 	return_buffer = malloc(line_length + 1);
 	*(return_buffer + line_length) = '\0';
 	while (*(buffer + i) != '\n')

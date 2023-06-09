@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:22:26 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/07 23:57:21 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:58:23 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
+#  define BUFFER_SIZE 5
 # endif
 
 char	*get_next_line(int fd);
