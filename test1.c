@@ -3,9 +3,128 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+void	check_leaks();
+char	*buffer_add_resize(char *buffer, char *temp_buffer);
+int		check_new_line(char *buffer);
+int		buffer_length(char *buffer);
+char	*buffer_to_buffer(char *buffer);
+void	line_remove(char *persbuff);
+
+int	check_new_line(char *buffer)
+{
+	int	i;
+	int	new_line_pos;
+
+	i = 0;
+	new_line_pos = 0;
+	if (!buffer)
+		return (0);
+	while (*(buffer + i) && !new_line_pos)
+	{
+		if (((*(buffer + i) == '\n') || (*(buffer + i) == '\0'))
+			&& !new_line_pos)
+			new_line_pos = i + 1;
+		i++;
+	}
+	return (new_line_pos);
+}
+
+int	buffer_length(char *buffer)
+{
+	int	i;
+
+	i = 0;
+	if (buffer == NULL)
+		return (0);
+	while (*(buffer + i))
+		i++;
+	return (i);
+}
+
+char	*buffer_to_buffer(char *buffer)
+{
+	char	*temp;
+	int		i;
+	int		blen;
+
+	i = 0;
+	blen = buffer_length(buffer);
+	temp = malloc(blen + 1);
+	*(temp + blen) = '\0';
+	while (*(buffer + i))
+	{
+		*(temp + i) = *(buffer + i);
+		i++;
+	}
+	return (temp);
+}
+
+void	line_remove(char *persbuff)
+{
+	char	*temp;
+	int		new_line_pos;
+	int		i;
+
+	i = 0;
+	temp = NULL;
+	new_line_pos = check_new_line(persbuff);
+	temp = buffer_to_buffer((persbuff + new_line_pos));
+	while (i < 21)
+	{
+		*(persbuff + i) = '\0';
+		i++;
+	}
+	i = 0;
+	while (*(temp + i) != '\0')
+	{
+		*(persbuff + i) = *(temp + i);
+		i++;
+	}
+	free(temp);
+}
+
+char	*buffer_add_resize(char *buffer, char *temp_buffer)
+{
+	char	*temp;
+	int		i;
+	int		j;
+	int		blen;
+	int		tblen;
+
+	i = 0;
+	j = 0;
+	blen = buffer_length(buffer);
+	tblen = buffer_length(temp_buffer);
+	temp = malloc((blen + tblen) + 1);
+	*(temp + (blen + tblen)) = '\0';
+	while (*(buffer + i))
+	{
+		*(temp + i) = *(buffer + i);
+		i++;
+	}
+	while (*(temp_buffer + j))
+	{
+		*(temp + (i + j)) = *(temp_buffer + j);
+		j++;
+	}
+	return (temp);
+}
+
 int	main(void)
 {
+	char	test[] = "test\ntesttest\ntest";
+	char	test1[] = "secondtext test\n\n";
+	char	*temp;
 
+	temp = NULL;
+	printf("\n|%s|\n", test);
+	line_remove(test);
+	printf("\n|%s|\n", test);
+	temp = buffer_add_resize(test, test1);
+	printf("\n|%s|\n", temp);
+	free(temp);
+	check_leaks();
+	return (0);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:22:26 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/11 19:32:35 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/11 23:11:06 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*last_line(char *buffer);
-char	*line_remove(char *buffer);
+void	line_remove(char *persbuff);
 char	*line_from_buffer(char *buffer);
-int		buffer_to_buffer(char *buffer1, char *buffer2);
+char	*buffer_to_buffer(char *buffer);
 int		buffer_length(char *buffer);
 int		check_new_line(char *buffer);
 char	*buffer_add_resize(char *buffer, char *temp_buffer);
