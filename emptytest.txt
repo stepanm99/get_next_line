@@ -1,0 +1,10 @@
+gnl()
+{
+	persbuff
+	resbuff
+
+	if (check_new_line(persbuff))			//check if the persbuff has new line
+	{
+		buff_to_buff(resbuff, persbuff + check_new_line(persbuff))		//
+	}
+}

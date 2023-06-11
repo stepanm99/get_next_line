@@ -1,3 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int	main(void)
+{
+
+}
+
+
+
+
+
+
 /*#include "get_next_line.h"
 
 int	fcn(void)
