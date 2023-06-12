@@ -98,7 +98,7 @@ static int total_leaks_size() {
 // ================================== MALLOC ==================================
 
 static void malloc_init(void) {
-    real_malloc = (void *(*)(unsigned long))dlsym(RTLD_NEXT, "malloc");
+    real_malloc = (void *(*)(unsigned long))dlsym(RTLD_NOW, "malloc");
     if (real_malloc == 0)
         fprintf(stderr, "Error in `dlsym`: %s\n", dlerror());
     memset(&allocs_array, 0, sizeof(allocs_array));
@@ -158,7 +158,7 @@ void *malloc(unsigned long size) {
 // =================================== FREE ===================================
 
 static void free_init(void) {
-    real_free = (void (*)(void *))dlsym(RTLD_NEXT, "free");
+    real_free = (void (*)(void *))dlsym(RTLD_NOW, "free");
     if (real_free == 0)
         fprintf(stderr, "Error in `dlsym`: %s\n", dlerror());
 }

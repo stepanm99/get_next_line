@@ -19,7 +19,8 @@ char	*get_next_line(int fd)
 	char		*resbuff;
 	int			rdreturn;
 
-	while ()
+	while (!check_new_line(resbuff))
+	{
 	if (check_new_line(persbuff))
 	{
 		resbuff = line_from_buffer(persbuff);
@@ -36,6 +37,7 @@ char	*get_next_line(int fd)
 			return (resbuff);
 		if (rdreturn == BUFFER_SIZE)
 			resbuff = buffer_add_resize(resbuff, persbuff);
+	}
 	}
 	return (NULL);
 }

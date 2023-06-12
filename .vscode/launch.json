@@ -25,8 +25,8 @@
 		"type": "lldb",
 		"request": "launch",
 		"args": [],
-		"cwd": "/Users/smelicha/Documents/in_progress/get_next_line/get_next_line",
-		"program": "/Users/smelicha/Documents/in_progress/get_next_line/get_next_line/prog"
+		"cwd": "/home/stepanm/Documents/Programming/get_next_line",
+		"program": "/home/stepanm/Documents/Programming/get_next_line/prog"
 	  }
 	]
 }

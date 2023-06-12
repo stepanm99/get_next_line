@@ -1,6 +1,6 @@
 #include "get_next_line.h"
 
-void	check_leaks();
+//void	check_leaks();
 //*
 int	main(void)
 {
@@ -25,7 +25,7 @@ int	main(void)
 		i++;
 	}
 	close(fd);
-	check_leaks();
+//	check_leaks();
 	return (0);
 }
 //*/

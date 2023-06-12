@@ -10,49 +10,22 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= getnextline.a
 
-SRC = $(shell find . -name "get_next_line.c" -o -name "test1.c" -o -name "leakcheck.c")
+SRC = get_next_line.c prog.c
 
-CC = cc
-FLAGS = -Wall -Wextra -Werror
+CC = gcc
+FLAGS = -Wall -Wextra -Werror -g -D BUFFER_SIZE=10
 
-OBJ	= $(SRC:.c=.o)
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	@echo "Linking $@"
-	@ar rcs $(NAME) $(OBJ)
-	@echo "Done!"
-
-%.o: %.c
-	@echo "Compiling $<"
-	@$(CC) $(FLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJ)
-
-fclean: clean
-	@rm -f $(NAME)
-
-re: fclean all
-
-test: all
-	@./$(NAME)
-
-bonus: all
-
-maintest: FLAGS += -D BUFFER_SIZE=10
-maintest: all
+maintest:
 	@echo "~~~ Testing with main function ~~~"
-	@$(CC) $(NAME) prog.c $(FLAGS) -o prog
+	@$(CC) $(SRC) prog.c $(FLAGS) -o prog
 	@./prog
 
-maindebug: FLAGS += -g
-maindebug: all
+maindebug:
 	@echo "~~~ Testing with main function ~~~"
-	@$(CC) $(NAME) prog.c $(FLAGS) -o prog
+	@gcc $(SRC) $(FLAGS) -o prog
 	@./prog
+	@valgrind ./prog
 
 .PHONY: all clean fclean re test bonus maintest maindebug
