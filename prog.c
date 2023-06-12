@@ -12,7 +12,7 @@ int	main(void)
 	fd = open("test.txt", O_RDONLY);
 	printf("File descriptor : %d\n\n", fd);
 	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
-	while (i < 9)
+	while (i < 20)
 	{
 		buffer = get_next_line(fd);
 		if (buffer == NULL)

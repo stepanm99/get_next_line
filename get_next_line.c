@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:54:53 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/11 23:20:02 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/12 22:43:14 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,12 @@ char	*get_next_line(int fd)
 	char		*resbuff;
 	int			rdreturn;
 
+	resbuff = NULL;
 	while (!check_new_line(resbuff))
 	{
-	if (check_new_line(persbuff))
-	{
-		resbuff = line_from_buffer(persbuff);
-		line_remove(persbuff);
-		return (resbuff);
+		
 	}
-	if (!check_new_line(persbuff))
-	{
-		resbuff = buffer_to_buffer(persbuff);
-		rdreturn = read(fd, persbuff, BUFFER_SIZE);
-		if (rdreturn == 0)
-			return (NULL);
-		if (rdreturn < BUFFER_SIZE)
-			return (resbuff);
-		if (rdreturn == BUFFER_SIZE)
-			resbuff = buffer_add_resize(resbuff, persbuff);
-	}
-	}
-	return (NULL);
+	return (resbuff);
 }
 
 char	*line_from_buffer(char *buffer)
@@ -67,6 +52,7 @@ char	*line_from_buffer(char *buffer)
 	}
 	return (return_buffer);
 }
+
 
 char	*buffer_add_resize(char *buffer, char *temp_buffer)
 {
@@ -161,10 +147,13 @@ int	check_new_line(char *buffer)
 		return (0);
 	while (*(buffer + i) && !new_line_pos)
 	{
-		if (((*(buffer + i) == '\n') || (*(buffer + i) == '\0'))
+		if ((*(buffer + i) == '\n')
 			&& !new_line_pos)
 			new_line_pos = i + 1;
 		i++;
 	}
+	
+	if ((*(buffer + i + 1) == '\0') && i < 0)
+		return (i);
 	return (new_line_pos);
 }

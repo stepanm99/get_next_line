@@ -1,3 +1,18 @@
 1
 
 2
+3
+4
+5
+7
+8
+9
+
+static	persitent_buffer[BUFFER_SIZE + 1]
+result_buffer
+read_return
+
+while (!new_line(result_buffer))
+	if (persistent_buffer_length == 0 || !persistent_buffer_new_line)
+		read_return = read
+	
