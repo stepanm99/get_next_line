@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_v0.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:24:58 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/11 20:35:56 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/13 19:41:34 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ char	*line_from_buffer(char *buffer)
 	i = 0;
 	return_buffer = NULL;
 	line_length = check_new_line(buffer);
-//	if (!line_length)
-//		return (NULL);
 	return_buffer = malloc(line_length + 1);
 	*(return_buffer + line_length) = '\0';
 	while (*(buffer + i) != '\n')

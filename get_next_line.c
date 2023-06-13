@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 20:54:53 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/12 22:43:14 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/13 21:07:36 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,114 +16,17 @@
 char	*get_next_line(int fd)
 {
 	static char	persbuff[BUFFER_SIZE + 1];
+	static int	eoflag;
 	char		*resbuff;
 	int			rdreturn;
 
+	rdreturn = 0;
 	resbuff = NULL;
-	while (!check_new_line(resbuff))
-	{
-		
-	}
-	return (resbuff);
+	if (eoflag)
+		return (NULL);
+	
+	return (NULL);
 }
-
-char	*line_from_buffer(char *buffer)
-{
-	char	*return_buffer;
-	int		line_length;
-	int		i;
-
-	i = 0;
-	return_buffer = NULL;
-	line_length = check_new_line(buffer);
-//	if (!line_length)
-//		return (NULL);
-	return_buffer = malloc(line_length + 1);
-	*(return_buffer + line_length) = '\0';
-	while (*(buffer + i) != '\n')
-	{
-		*(return_buffer + i) = *(buffer + i);
-		i++;
-	}
-	if (*(buffer + i) == '\n')
-	{
-//		i++;
-		*(return_buffer + i) = *(buffer + i);
-	}
-	return (return_buffer);
-}
-
-
-char	*buffer_add_resize(char *buffer, char *temp_buffer)
-{
-	char	*temp;
-	int		i;
-	int		j;
-	int		blen;
-	int		tblen;
-
-	i = 0;
-	j = 0;
-	blen = buffer_length(buffer);
-	tblen = buffer_length(temp_buffer);
-	temp = malloc((blen + tblen) + 1);
-	*(temp + (blen + tblen)) = '\0';
-	while (*(buffer + i))
-	{
-		*(temp + i) = *(buffer + i);
-		i++;
-	}
-	free(buffer);
-	while (*(temp_buffer + j))
-	{
-		*(temp + (i + j)) = *(temp_buffer + j);
-		j++;
-	}
-	return (temp);
-}
-
-void	line_remove(char *persbuff)
-{
-	char	*temp;
-	int		new_line_pos;
-	int		i;
-
-	i = 0;
-	temp = NULL;
-	new_line_pos = check_new_line(persbuff);
-	temp = buffer_to_buffer((persbuff + new_line_pos));
-	while (i < 21)
-	{
-		*(persbuff + i) = '\0';
-		i++;
-	}
-	i = 0;
-	while (*(temp + i) != '\0')
-	{
-		*(persbuff + i) = *(temp + i);
-		i++;
-	}
-	free(temp);
-}
-
-char	*buffer_to_buffer(char *buffer)
-{
-	char	*temp;
-	int		i;
-	int		blen;
-
-	i = 0;
-	blen = buffer_length(buffer);
-	temp = malloc(blen + 1);
-	*(temp + blen) = '\0';
-	while (*(buffer + i))
-	{
-		*(temp + i) = *(buffer + i);
-		i++;
-	}
-	return (temp);
-}
-
 int	buffer_length(char *buffer)
 {
 	int	i;
@@ -147,13 +50,51 @@ int	check_new_line(char *buffer)
 		return (0);
 	while (*(buffer + i) && !new_line_pos)
 	{
-		if ((*(buffer + i) == '\n')
-			&& !new_line_pos)
+		if (((*(buffer + i) == '\n') || (*(buffer + i) == '\0')) && !new_line_pos)
 			new_line_pos = i + 1;
 		i++;
 	}
-	
-	if ((*(buffer + i + 1) == '\0') && i < 0)
-		return (i);
 	return (new_line_pos);
+}
+
+void	line_remove(char *buffer)
+{
+	int	line_length;
+	int	i;
+
+	i = 0;
+	line_length = check_new_line(buffer);
+	if (line_length == 0)
+	{
+		while (i != BUFFER_SIZE)
+		{
+			*(buffer + i) = '\0';
+			i++;
+		}
+	}
+	while ((i + line_length) != BUFFER_SIZE)
+	{
+		*(buffer + i) = *(buffer + (i + line_length));
+		i++;
+	}
+	while (i != BUFFER_SIZE)
+	{
+		*(buffer + i) = '\0';
+		i++;
+	}
+}
+
+int	buffer_to_buffer(char *buffer1, char *buffer2)
+{
+	int	i;
+
+	i = 0;
+	while (*(buffer2 + i))
+	{
+		*(buffer1 + i) = *(buffer2 + i);
+		i++;
+	}
+	i++;
+	*(buffer1 + i) = '\0';
+	return (i);
 }
