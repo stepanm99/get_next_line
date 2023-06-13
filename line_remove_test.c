@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-
+/*TODO:
+line from buffer return all the buffer contents, not just one line!!!!!!!!!!!*/
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 12
 # endif
@@ -34,22 +35,22 @@ int	main(void)
 	*(buffer + 8) = '\n';
 	printf("\n%s\n", buffer);
 	result = line_from_buffer(buffer);
-	printf("\nline from buffer: %s\n", result);
+	printf("\nline from buffer: |%s|\n", result);
 	free(result);
 	line_remove(buffer);
 	printf("\n%s\n", buffer);
 	result = line_from_buffer(buffer);
-	printf("\nline from buffer: %s\n", result);
+	printf("\nline from buffer: |%s|\n", result);
 	free(result);
 	line_remove(buffer);
 	printf("\n%s\n", buffer);
 	result = line_from_buffer(buffer);
-	printf("\nline from buffer: %s\n", result);
+	printf("\nline from buffer: |%s|\n", result);
 	free(result);
 	line_remove(buffer);
 	printf("\n%s\n", buffer);
 	result = line_from_buffer(buffer);
-	printf("\nline from buffer: %s\n", result);
+	printf("\nline from buffer: |%s|\n", result);
 	free(result);
 	line_remove(buffer);
 	printf("\n%s\n", buffer);
