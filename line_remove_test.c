@@ -5,17 +5,46 @@
 /*TODO:
 */
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 12
+#  define BUFFER_SIZE 5
 # endif
 
 int		check_new_line(char *buffer);
 void	line_remove(char *buffer);
 char	*line_from_buffer(char *buffer);
 int		buffer_length(char *buffer);
+char	*get_next_line(int fd);
+void	read_fd(char *static_buffer, char *return_buffer, int fd);
+char	*buffer_add_resize(char *buffer, char *temp_buffer);
+int		buffer_to_buffer(char *buffer1, char *buffer2);
 
 int	main(void)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	int		fd;
+	char	*buffer;
+	int		i;
+
+	i = 0;
+	fd = open("test.txt", O_RDONLY);
+	printf("File descriptor : %d\n\n", fd);
+	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
+	while (i < 20)
+	{
+		buffer = get_next_line(fd);
+		if (buffer == NULL)
+		{
+//			free(buffer);
+			break ;
+		}
+		printf("%s", buffer);
+		free(buffer);
+		i++;
+	}
+	close(fd);
+//	check_leaks();
+	return (0);
+
+
+	/*char	buffer[BUFFER_SIZE + 1];
 	char	*result;
 	int		i;
 
@@ -54,7 +83,67 @@ int	main(void)
 	free(result);
 	line_remove(buffer);
 	printf("\n%s\n", buffer);
-	return (0);
+	return (0);*/
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*static_buffer;
+	char		*return_buffer;
+
+	return_buffer = NULL;
+	if (!static_buffer)
+		static_buffer = malloc(BUFFER_SIZE + 1);
+	if (!static_buffer)
+		return (NULL);
+	read_fd(static_buffer, return_buffer, fd);
+	if (buffer_length(return_buffer))
+		return (return_buffer);
+	if (!buffer_length(static_buffer))
+		return (free(static_buffer), NULL);
+	return (NULL);
+}
+
+void	read_fd(char *static_buffer, char *return_buffer, int fd)
+{
+	int	read_return;
+
+	read_return = 0;
+	if (check_new_line(static_buffer))
+	{
+		return_buffer = line_from_buffer(static_buffer);
+		line_remove(static_buffer);
+		return ;
+	}
+	while (!check_new_line(static_buffer))
+	{
+		return_buffer = buffer_add_resize(return_buffer, static_buffer);
+		read_return = read(fd, static_buffer, BUFFER_SIZE);
+	}
+	return_buffer = buffer_add_resize(return_buffer, line_from_buffer(static_buffer));
+	line_remove(static_buffer);
+}
+/*returns reallocated return_buffer with added data from static_buffer*/
+char	*buffer_add_resize(char *return_buffer, char *static_buffer)
+{
+	char	*temp;
+	int		return_buffer_l;
+	int		static_buffer_l;
+
+	temp = NULL;
+	return_buffer_l = buffer_length(return_buffer);
+	static_buffer_l = buffer_length(static_buffer);
+	temp = malloc(return_buffer_l + static_buffer_l + 1);
+	if (!temp)
+		return (NULL);
+	*(temp + (return_buffer_l + static_buffer_l)) = '\0';
+	if (return_buffer)
+	{
+		buffer_to_buffer(temp, return_buffer);
+		free(return_buffer);
+	}
+	buffer_to_buffer((temp + return_buffer_l), static_buffer);
+	return (temp);
 }
 
 char	*line_from_buffer(char *buffer)
@@ -84,7 +173,7 @@ char	*line_from_buffer(char *buffer)
 	return (return_buffer);
 }
 
-int	check_new_line(char *buffer)
+int		check_new_line(char *buffer)
 {
 	int	i;
 	int	new_line_pos;
@@ -131,7 +220,7 @@ void	line_remove(char *buffer)
 		i++;
 	}
 }
-int	buffer_length(char *buffer)
+int		buffer_length(char *buffer)
 {
 	int	i;
 
@@ -140,5 +229,19 @@ int	buffer_length(char *buffer)
 		return (0);
 	while (*(buffer + i))
 		i++;
+	return (i);
+}
+int	buffer_to_buffer(char *buffer1, char *buffer2)
+{
+	int	i;
+
+	i = 0;
+	while (*(buffer2 + i))
+	{
+		*(buffer1 + i) = *(buffer2 + i);
+		i++;
+	}
+	i++;
+	*(buffer1 + i) = '\0';
 	return (i);
 }
