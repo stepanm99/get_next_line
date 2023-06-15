@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 /*TODO:
-line from buffer return all the buffer contents, not just one line!!!!!!!!!!!*/
+*/
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 12
 # endif
@@ -66,10 +66,9 @@ char	*line_from_buffer(char *buffer)
 	i = 0;
 	return_buffer = NULL;
 	line_length = check_new_line(buffer);
-	printf("\nbuffer_length from line_from_buffer: %d\n", buffer_length(buffer));
 	if (line_length == 0 && !buffer_length(buffer))
 		return (NULL);
-	else
+	else if (!line_length && buffer_length(buffer))
 		line_length = buffer_length(buffer);
 	return_buffer = malloc(line_length + 1);
 	*(return_buffer + line_length) = '\0';
