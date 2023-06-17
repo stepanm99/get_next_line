@@ -26,9 +26,6 @@ static void print_allocs();
 // ================================== PUBLIC ==================================
 
 void check_leaks() {
-	printf("\nChecking leaks\n");
-	if (malloc_counter == 0)
-		printf("\nLeakfree :) (probably)\n");
     if (malloc_counter != 0) {
         int total = total_leaks_size();
         fprintf(stderr,
@@ -98,7 +95,7 @@ static int total_leaks_size() {
 // ================================== MALLOC ==================================
 
 static void malloc_init(void) {
-    real_malloc = (void *(*)(unsigned long))dlsym(RTLD_NOW, "malloc");
+    real_malloc = (void *(*)(unsigned long))dlsym(RTLD_NEXT, "malloc");
     if (real_malloc == 0)
         fprintf(stderr, "Error in `dlsym`: %s\n", dlerror());
     memset(&allocs_array, 0, sizeof(allocs_array));
@@ -158,7 +155,7 @@ void *malloc(unsigned long size) {
 // =================================== FREE ===================================
 
 static void free_init(void) {
-    real_free = (void (*)(void *))dlsym(RTLD_NOW, "free");
+    real_free = (void (*)(void *))dlsym(RTLD_NEXT, "free");
     if (real_free == 0)
         fprintf(stderr, "Error in `dlsym`: %s\n", dlerror());
 }
