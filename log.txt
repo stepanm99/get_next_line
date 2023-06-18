@@ -1,114 +1,244 @@
-==19766== Memcheck, a memory error detector
-==19766== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==19766== Using Valgrind-3.21.0.GIT-lbmacos and LibVEX; rerun with -h for copyright info
-==19766== Command: ./prog
-==19766== 
-==19766== Conditional jump or move depends on uninitialised value(s)
-==19766==    at 0x100003B56: check_new_line (line_remove_test.c:196)
-==19766==    by 0x100003996: read_fd (line_remove_test.c:116)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Conditional jump or move depends on uninitialised value(s)
-==19766==    at 0x100003B56: check_new_line (line_remove_test.c:196)
-==19766==    by 0x1000039D0: read_fd (line_remove_test.c:122)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Conditional jump or move depends on uninitialised value(s)
-==19766==    at 0x100003AE7: buffer_length (line_remove_test.c:241)
-==19766==    by 0x100003DEC: buffer_add_resize (line_remove_test.c:145)
-==19766==    by 0x100003A47: read_fd (line_remove_test.c:128)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Invalid write of size 1
-==19766==    at 0x100003EFA: buffer_to_buffer (line_remove_test.c:256)
-==19766==    by 0x100003E84: buffer_add_resize (line_remove_test.c:157)
-==19766==    by 0x100003A8E: read_fd (line_remove_test.c:132)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766==  Address 0x100826673 is 0 bytes after a block of size 3 alloc'd
-==19766==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==19766==    by 0x100003E1C: buffer_add_resize (line_remove_test.c:148)
-==19766==    by 0x100003A8E: read_fd (line_remove_test.c:132)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Conditional jump or move depends on uninitialised value(s)
-==19766==    at 0x100003EBF: buffer_to_buffer (line_remove_test.c:250)
-==19766==    by 0x100003E84: buffer_add_resize (line_remove_test.c:157)
-==19766==    by 0x100003A47: read_fd (line_remove_test.c:128)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Invalid write of size 1
-==19766==    at 0x100003EFA: buffer_to_buffer (line_remove_test.c:256)
-==19766==    by 0x100003E84: buffer_add_resize (line_remove_test.c:157)
-==19766==    by 0x100003A47: read_fd (line_remove_test.c:128)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766==  Address 0x1008267b2 is 0 bytes after a block of size 2 alloc'd
-==19766==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==19766==    by 0x100003E1C: buffer_add_resize (line_remove_test.c:148)
-==19766==    by 0x100003A47: read_fd (line_remove_test.c:128)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Conditional jump or move depends on uninitialised value(s)
-==19766==    at 0x100003AE7: buffer_length (line_remove_test.c:241)
-==19766==    by 0x1000039FA: read_fd (line_remove_test.c:124)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Conditional jump or move depends on uninitialised value(s)
-==19766==    at 0x100003B56: check_new_line (line_remove_test.c:196)
-==19766==    by 0x100003A2C: read_fd (line_remove_test.c:126)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Conditional jump or move depends on uninitialised value(s)
-==19766==    at 0x100003B56: check_new_line (line_remove_test.c:196)
-==19766==    by 0x100003D0B: line_remove (line_remove_test.c:213)
-==19766==    by 0x100003A9B: read_fd (line_remove_test.c:133)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
-==19766== Invalid read of size 1
-==19766==    at 0x100003AE3: buffer_length (line_remove_test.c:241)
-==19766==    by 0x10000392E: get_next_line (line_remove_test.c:104)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766==  Address 0x1008265a0 is 0 bytes inside a block of size 51 free'd
-==19766==    at 0x10012491D: free (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==19766==    by 0x100003A0C: read_fd (line_remove_test.c:125)
-==19766==    by 0x1000038FF: get_next_line (line_remove_test.c:101)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766==  Block was alloc'd at
-==19766==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==19766==    by 0x1000038C4: get_next_line (line_remove_test.c:98)
-==19766==    by 0x100003831: main (line_remove_test.c:34)
-==19766== 
+==8062== Memcheck, a memory error detector
+==8062== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==8062== Using Valgrind-3.21.0.GIT-lbmacos and LibVEX; rerun with -h for copyright info
+==8062== Command: ./prog
+==8062== 
 File descriptor : 3
 
-BUFFER_SIZE : 50
+BUFFER_SIZE : 5
 
-1
+==8062== Conditional jump or move depends on uninitialised value(s)
+==8062==    at 0x100003B56: check_new_line (line_remove_test.c:197)
+==8062==    by 0x100003996: read_fd (line_remove_test.c:117)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062==  Uninitialised value was created by a heap allocation
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1000038C4: get_next_line (line_remove_test.c:99)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
+==8062== Conditional jump or move depends on uninitialised value(s)
+==8062==    at 0x100003B56: check_new_line (line_remove_test.c:197)
+==8062==    by 0x1000039D0: read_fd (line_remove_test.c:123)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062==  Uninitialised value was created by a heap allocation
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1000038C4: get_next_line (line_remove_test.c:99)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
+==8062== Conditional jump or move depends on uninitialised value(s)
+==8062==    at 0x100003AE7: buffer_length (line_remove_test.c:242)
+==8062==    by 0x100003DEC: buffer_add_resize (line_remove_test.c:146)
+==8062==    by 0x100003A3E: read_fd (line_remove_test.c:129)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062==  Uninitialised value was created by a heap allocation
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1000038C4: get_next_line (line_remove_test.c:99)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
+==8062== Conditional jump or move depends on uninitialised value(s)
+==8062==    at 0x100003EBF: buffer_to_buffer (line_remove_test.c:251)
+==8062==    by 0x100003E84: buffer_add_resize (line_remove_test.c:158)
+==8062==    by 0x100003A3E: read_fd (line_remove_test.c:129)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062==  Uninitialised value was created by a heap allocation
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1000038C4: get_next_line (line_remove_test.c:99)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
+==8062== Invalid write of size 1
+==8062==    at 0x100003EFA: buffer_to_buffer (line_remove_test.c:257)
+==8062==    by 0x100003E84: buffer_add_resize (line_remove_test.c:158)
+==8062==    by 0x100003A3E: read_fd (line_remove_test.c:129)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062==  Address 0x1008265f6 is 0 bytes after a block of size 6 alloc'd
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x100003E1C: buffer_add_resize (line_remove_test.c:149)
+==8062==    by 0x100003A3E: read_fd (line_remove_test.c:129)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
+==8062== Invalid write of size 1
+==8062==    at 0x100003EFA: buffer_to_buffer (line_remove_test.c:257)
+==8062==    by 0x100003E84: buffer_add_resize (line_remove_test.c:158)
+==8062==    by 0x100003A85: read_fd (line_remove_test.c:133)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062==  Address 0x100826dc5 is 0 bytes after a block of size 85 alloc'd
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x100003E1C: buffer_add_resize (line_remove_test.c:149)
+==8062==    by 0x100003A85: read_fd (line_remove_test.c:133)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
 
+==8062== Conditional jump or move depends on uninitialised value(s)
+==8062==    at 0x100003B56: check_new_line (line_remove_test.c:197)
+==8062==    by 0x100003C13: line_from_buffer (line_remove_test.c:170)
+==8062==    by 0x100003A79: read_fd (line_remove_test.c:133)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062==  Uninitialised value was created by a heap allocation
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1000038C4: get_next_line (line_remove_test.c:99)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
+==8062== Conditional jump or move depends on uninitialised value(s)
+==8062==    at 0x100003B56: check_new_line (line_remove_test.c:197)
+==8062==    by 0x100003D0B: line_remove (line_remove_test.c:214)
+==8062==    by 0x100003A92: read_fd (line_remove_test.c:134)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062==  Uninitialised value was created by a heap allocation
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1000038C4: get_next_line (line_remove_test.c:99)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
 
-3
-5==19766== 
-==19766== HEAP SUMMARY:
-==19766==     in use at exit: 18,010 bytes in 163 blocks
-==19766==   total heap usage: 183 allocs, 20 frees, 22,817 bytes allocated
-==19766== 
-==19766== LEAK SUMMARY:
-==19766==    definitely lost: 6,291 bytes in 64 blocks
-==19766==    indirectly lost: 1,217 bytes in 21 blocks
-==19766==      possibly lost: 0 bytes in 0 blocks
-==19766==    still reachable: 0 bytes in 0 blocks
-==19766==         suppressed: 10,502 bytes in 78 blocks
-==19766== Rerun with --leak-check=full to see details of leaked memory
-==19766== 
-==19766== Use --track-origins=yes to see where uninitialised values come from
-==19766== For lists of detected and suppressed errors, rerun with: -s
-==19766== ERROR SUMMARY: 14 errors from 10 contexts (suppressed: 4 from 4)
+==8062== HEAP SUMMARY:
+==8062==     in use at exit: 20,640 bytes in 811 blocks
+==8062==   total heap usage: 19,696 allocs, 18,885 frees, 1,641,727 bytes allocated
+==8062== 
+==8062== 32 bytes in 1 blocks are definitely lost in loss record 14 of 43
+==8062==    at 0x100124BA0: calloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1006FC5F3: objc::DenseMap<objc_class*, objc_class*, objc::DenseMapValueInfo<objc_class*>, objc::DenseMapInfo<objc_class*>, objc::detail::DenseMapPair<objc_class*, objc_class*> >::grow(unsigned int) (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006FC69F: objc_class::mangledName() (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006E8406: objc_opt::objc_stringhash_t::getIndex(char const*) const (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006F82D0: unmap_image (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100015667: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==8062==    by 0x100015808: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==8062==    by 0x1002C1AD0: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==8062==    by 0x1006E6DAF: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100243F38: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x1002500E7: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x100133790: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==8062== 
+==8062== 32 bytes in 1 blocks are definitely lost in loss record 15 of 43
+==8062==    at 0x100124BA0: calloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1006FC5F3: objc::DenseMap<objc_class*, objc_class*, objc::DenseMapValueInfo<objc_class*>, objc::DenseMapInfo<objc_class*>, objc::detail::DenseMapPair<objc_class*, objc_class*> >::grow(unsigned int) (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006FC6C6: objc_class::mangledName() (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006FC69F: objc_class::mangledName() (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006E8406: objc_opt::objc_stringhash_t::getIndex(char const*) const (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006F82D0: unmap_image (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100015667: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==8062==    by 0x100015808: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==8062==    by 0x1002C1AD0: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==8062==    by 0x1006E6DAF: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100243F38: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x1002500E7: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==8062== 
+==8062== 80 (16 direct, 64 indirect) bytes in 1 blocks are definitely lost in loss record 21 of 43
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1003E0FA3: _owned_ptr_alloc (in /usr/lib/system/libsystem_c.dylib)
+==8062==    by 0x1003E1675: setenv (in /usr/lib/system/libsystem_c.dylib)
+==8062==    by 0x100683346: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==8062==    by 0x1001337A0: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==8062==    by 0x10002B352: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062==    by 0x10002B75D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062==    by 0x10002617A: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062==    by 0x1000260E5: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062==    by 0x100024233: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062==    by 0x1000242D3: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==8062==    by 0x100012661: dyld::initializeMainExecutable() (in /usr/lib/dyld)
+==8062== 
+==8062== 128 bytes in 1 blocks are definitely lost in loss record 25 of 43
+==8062==    at 0x100124BA0: calloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1006EB667: objc_msgSend_stret (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100243FEC: _os_object_alloc_realized (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x100248BC5: _dispatch_lane_create_with_target (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x10064B5F5: _libtrace_init (in /usr/lib/system/libsystem_trace.dylib)
+==8062==    by 0x1001337B0: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==8062==    by 0x10002B352: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062==    by 0x10002B75D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062==    by 0x10002617A: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062==    by 0x1000260E5: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062==    by 0x100024233: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062==    by 0x1000242D3: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==8062== 
+==8062== 378 (96 direct, 282 indirect) bytes in 1 blocks are definitely lost in loss record 32 of 43
+==8062==    at 0x100124BA0: calloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1006EB667: objc_msgSend_stret (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100243FEC: _os_object_alloc_realized (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x1006837D7: xpc_dictionary_create (in /usr/lib/system/libxpc.dylib)
+==8062==    by 0x100683E02: _xpc_dyld_image_callback (in /usr/lib/system/libxpc.dylib)
+==8062==    by 0x10001499C: dyld::registerBulkLoadCallback(void (*)(unsigned int, mach_header const**, char const**)) (in /usr/lib/dyld)
+==8062==    by 0x100683D1A: _xpc_collect_images (in /usr/lib/system/libxpc.dylib)
+==8062==    by 0x100683297: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==8062==    by 0x1001337A0: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==8062==    by 0x10002B352: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062==    by 0x10002B75D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062==    by 0x10002617A: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062== 
+==8062== 896 bytes in 28 blocks are definitely lost in loss record 35 of 43
+==8062==    at 0x100124BA0: calloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1006FC5F3: objc::DenseMap<objc_class*, objc_class*, objc::DenseMapValueInfo<objc_class*>, objc::DenseMapInfo<objc_class*>, objc::detail::DenseMapPair<objc_class*, objc_class*> >::grow(unsigned int) (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006E8406: objc_opt::objc_stringhash_t::getIndex(char const*) const (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006F82D0: unmap_image (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100015667: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==8062==    by 0x100015808: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==8062==    by 0x1002C1AD0: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==8062==    by 0x1006E6DAF: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100243F38: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x1002500E7: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x100133790: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==8062==    by 0x10002B352: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062== 
+==8062== 896 bytes in 28 blocks are definitely lost in loss record 36 of 43
+==8062==    at 0x100124BA0: calloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1006FC5F3: objc::DenseMap<objc_class*, objc_class*, objc::DenseMapValueInfo<objc_class*>, objc::DenseMapInfo<objc_class*>, objc::detail::DenseMapPair<objc_class*, objc_class*> >::grow(unsigned int) (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006FC6C6: objc_class::mangledName() (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006E8406: objc_opt::objc_stringhash_t::getIndex(char const*) const (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x1006F82D0: unmap_image (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100015667: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==8062==    by 0x100015808: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==8062==    by 0x1002C1AD0: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==8062==    by 0x1006E6DAF: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100243F38: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x1002500E7: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x100133790: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==8062== 
+==8062== 967 (96 direct, 871 indirect) bytes in 1 blocks are definitely lost in loss record 37 of 43
+==8062==    at 0x100124BA0: calloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1006EB667: objc_msgSend_stret (in /usr/lib/libobjc.A.dylib)
+==8062==    by 0x100243FEC: _os_object_alloc_realized (in /usr/lib/system/libdispatch.dylib)
+==8062==    by 0x1006837D7: xpc_dictionary_create (in /usr/lib/system/libxpc.dylib)
+==8062==    by 0x100683659: _xpc_collect_environment (in /usr/lib/system/libxpc.dylib)
+==8062==    by 0x100683292: _libxpc_initializer (in /usr/lib/system/libxpc.dylib)
+==8062==    by 0x1001337A0: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==8062==    by 0x10002B352: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062==    by 0x10002B75D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==8062==    by 0x10002617A: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062==    by 0x1000260E5: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062==    by 0x100024233: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==8062== 
+==8062== 2,627 bytes in 648 blocks are definitely lost in loss record 42 of 43
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x100003C84: line_from_buffer (line_remove_test.c:176)
+==8062==    by 0x100003A79: read_fd (line_remove_test.c:133)
+==8062==    by 0x1000038FF: get_next_line (line_remove_test.c:102)
+==8062==    by 0x10000382C: main (line_remove_test.c:35)
+==8062== 
+==8062== 4,096 bytes in 1 blocks are definitely lost in loss record 43 of 43
+==8062==    at 0x100124545: malloc (in /Users/smelicha/.brew/Cellar/valgrind/HEAD-9da5605/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==8062==    by 0x1003BE367: __smakebuf (in /usr/lib/system/libsystem_c.dylib)
+==8062==    by 0x1003D1C4D: __swsetup (in /usr/lib/system/libsystem_c.dylib)
+==8062==    by 0x1003EA94E: __v2printf (in /usr/lib/system/libsystem_c.dylib)
+==8062==    by 0x1003C32B1: vfprintf_l (in /usr/lib/system/libsystem_c.dylib)
+==8062==    by 0x1003C141D: printf (in /usr/lib/system/libsystem_c.dylib)
+==8062==    by 0x100003801: main (line_remove_test.c:31)
+==8062== 
+==8062== LEAK SUMMARY:
+==8062==    definitely lost: 8,915 bytes in 711 blocks
+==8062==    indirectly lost: 1,217 bytes in 21 blocks
+==8062==      possibly lost: 0 bytes in 0 blocks
+==8062==    still reachable: 6 bytes in 1 blocks
+==8062==         suppressed: 10,502 bytes in 78 blocks
+==8062== Reachable blocks (those to which a pointer was found) are not shown.
+==8062== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8062== 
+==8062== For lists of detected and suppressed errors, rerun with: -s
+==8062== ERROR SUMMARY: 72287 errors from 18 contexts (suppressed: 7 from 7)

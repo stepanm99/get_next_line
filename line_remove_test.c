@@ -8,7 +8,7 @@
 #  define BUFFER_SIZE 50
 # endif
 
-//void check_leaks();
+void check_leaks();
 
 int		check_new_line(char *buffer);
 void	line_remove(char *buffer);
@@ -26,10 +26,11 @@ int	main(void)
 	int		i;
 
 	i = 0;
+	buffer = NULL;
 	fd = open("test.txt", O_RDONLY);
 	printf("File descriptor : %d\n\n", fd);
 	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
-	while (i < 20)
+	while (i < 1000)
 	{
 		buffer = get_next_line(fd);
 		if (buffer == NULL)
@@ -42,7 +43,7 @@ int	main(void)
 		i++;
 	}
 	close(fd);
-//	check_leaks();
+	check_leaks();
 	return (0);
 
 
@@ -122,7 +123,7 @@ char	*read_fd(char *static_buffer, int fd)
 	while (!check_new_line(static_buffer))
 	{
 		if (read_return == 0 && !buffer_length(static_buffer))
-			return (free(static_buffer), NULL);												//removed free static buffer
+			return (NULL);
 		if (read_return != BUFFER_SIZE && !check_new_line(static_buffer))
 			break ;
 		return_buffer = buffer_add_resize(return_buffer, static_buffer);
@@ -252,7 +253,7 @@ int	buffer_to_buffer(char *buffer1, char *buffer2)
 		*(buffer1 + i) = *(buffer2 + i);
 		i++;
 	}
-	i++;
+//	i++;
 	*(buffer1 + i) = '\0';
 	return (i);
 }
