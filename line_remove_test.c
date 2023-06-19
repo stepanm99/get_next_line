@@ -5,7 +5,7 @@
 /*TODO:
 */
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
+#  define BUFFER_SIZE 1
 # endif
 
 void check_leaks();
@@ -16,6 +16,7 @@ char	*line_from_buffer(char *buffer);
 int		buffer_length(char *buffer);
 char	*get_next_line(int fd);
 char	*read_fd(char *static_buffer, int fd);
+char	*read_fd_helper(char *return_buffer, char *static_buffer, int flag);
 char	*buffer_add_resize(char *buffer, char *temp_buffer);
 int		buffer_to_buffer(char *buffer1, char *buffer2);
 
@@ -34,10 +35,7 @@ int	main(void)
 	{
 		buffer = get_next_line(fd);
 		if (buffer == NULL)
-		{
-//			free(buffer);
 			break ;
-		}
 		printf("%s", buffer);
 		free(buffer);
 		i++;
@@ -103,7 +101,10 @@ char	*get_next_line(int fd)
 	if (buffer_length(return_buffer))
 		return (return_buffer);
 	if (!buffer_length(static_buffer) && static_buffer)
+	{
+		free(static_buffer);
 		return (NULL);
+	}
 	return (NULL);
 }
 
@@ -130,9 +131,27 @@ char	*read_fd(char *static_buffer, int fd)
 		read_return = read(fd, static_buffer, BUFFER_SIZE);
 	}
 	if (read_return != 0)
-		return_buffer = buffer_add_resize(return_buffer, line_from_buffer(static_buffer));
+		return_buffer = read_fd_helper(return_buffer, static_buffer, 1);
 	line_remove(static_buffer);
 	return (return_buffer);
+}
+
+char	*read_fd_helper(char *return_buffer, char *static_buffer, int flag)
+{
+	char *temp1;
+	char *temp2;
+
+	temp1 = NULL;
+	if (flag == 1)
+	{
+		temp1 = line_from_buffer(static_buffer);
+		temp2 = buffer_add_resize(return_buffer, temp1);
+		free(temp1);
+		temp1 = NULL;
+//		free(return_buffer);
+		return (temp2);
+	}
+	return (NULL);
 }
 /*returns reallocated return_buffer with added data from static_buffer*/
 char	*buffer_add_resize(char *return_buffer, char *static_buffer)
@@ -154,6 +173,7 @@ char	*buffer_add_resize(char *return_buffer, char *static_buffer)
 	{
 		buffer_to_buffer(temp, return_buffer);
 		free(return_buffer);
+		return_buffer = NULL;
 	}
 	buffer_to_buffer((temp + return_buffer_l), static_buffer);
 	return (temp);
