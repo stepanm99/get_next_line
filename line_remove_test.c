@@ -3,9 +3,12 @@
 #include <fcntl.h>
 #include <unistd.h>
 /*TODO:
+In test 3 with buffer size 42 and 43 characters in file without new line:
+prints the line two times and second time it prints less characters...
+And I yet don't know why. More info at the end of log.txt
 */
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 42
 # endif
 
 void check_leaks();
