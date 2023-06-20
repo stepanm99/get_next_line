@@ -29,7 +29,7 @@ char	*get_next_line(int fd)
 	char		*return_buffer;
 
 	return_buffer = NULL;
-	if (!static_buffer && (BUFFER_SIZE > 0) && (fd > 0))
+	if (!static_buffer && (BUFFER_SIZE > 0) && (fd >= 0 && fd < 1000))
 		static_buffer = malloc(BUFFER_SIZE + 1);
 	if (!static_buffer || (BUFFER_SIZE <= 0) || (fd <= 0))
 		return (NULL);
@@ -84,7 +84,6 @@ char	*read_fd_helper(char *return_buffer, char *static_buffer, int flag)
 		temp2 = buffer_add_resize(return_buffer, temp1);
 		free(temp1);
 		temp1 = NULL;
-//		free(return_buffer);
 		return (temp2);
 	}
 	return (NULL);

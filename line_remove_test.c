@@ -5,7 +5,7 @@
 /*TODO:
 */
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 100
 # endif
 
 void check_leaks();
@@ -148,7 +148,6 @@ char	*read_fd_helper(char *return_buffer, char *static_buffer, int flag)
 		temp2 = buffer_add_resize(return_buffer, temp1);
 		free(temp1);
 		temp1 = NULL;
-//		free(return_buffer);
 		return (temp2);
 	}
 	return (NULL);
