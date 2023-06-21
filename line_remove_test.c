@@ -32,14 +32,14 @@ int	main(void)
 	i = 0;
 	buffer = NULL;
 	fd = open("test.txt", O_RDONLY);
-	printf("File descriptor : %d\n\n", fd);
-	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
+//	printf("File descriptor : %d\n\n", fd);
+//	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
 	while (i < 1000)
 	{
 		buffer = get_next_line(fd);
 		if (buffer == NULL)
 			break ;
-		printf("%s", buffer);
+		write(1, buffer, buffer_length(buffer));
 		free(buffer);
 		i++;
 	}
