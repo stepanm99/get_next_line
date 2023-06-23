@@ -6,13 +6,13 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:17 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/23 23:22:35 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/23 23:57:05 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		check_new_line(char *buffer)
+int	check_new_line(char *buffer)
 {
 	int	i;
 	int	new_line_pos;
@@ -39,7 +39,6 @@ void	line_remove(char *buffer)
 
 	i = 0;
 	line_length = check_new_line(buffer);
-//	printf("\nfrom line_remove: %d\n", line_length);
 	if (line_length == 0)
 	{
 		while (i != BUFFER_SIZE)
@@ -59,7 +58,8 @@ void	line_remove(char *buffer)
 		i++;
 	}
 }
-int		buffer_length(char *buffer)
+
+int	buffer_length(char *buffer)
 {
 	int	i;
 
@@ -70,6 +70,7 @@ int		buffer_length(char *buffer)
 		i++;
 	return (i);
 }
+
 int	buffer_to_buffer(char *buffer1, char *buffer2)
 {
 	int	i;
@@ -80,7 +81,6 @@ int	buffer_to_buffer(char *buffer1, char *buffer2)
 		*(buffer1 + i) = *(buffer2 + i);
 		i++;
 	}
-//	i++;
 	*(buffer1 + i) = '\0';
 	return (i);
 }

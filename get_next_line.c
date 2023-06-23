@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/23 23:22:07 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/23 23:56:08 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,39 +33,39 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-char	*read_fd(char *static_buffer, int fd)
+char	*read_fd(char *stat_buf, int fd)
 {
-	int		read_return;
-	char	*return_buffer;
+	int		rd_ret;
+	char	*ret_buf;
 
-	return_buffer = NULL;
-	read_return = BUFFER_SIZE;
-	if (check_new_line(static_buffer))
+	ret_buf = NULL;
+	rd_ret = BUFFER_SIZE;
+	if (check_new_line(stat_buf))
 	{
-		return_buffer = line_from_buffer(static_buffer);
-		line_remove(static_buffer);
-		return (return_buffer);
+		ret_buf = line_from_buffer(stat_buf);
+		line_remove(stat_buf);
+		return (ret_buf);
 	}
-	while (!check_new_line(static_buffer))
+	while (!check_new_line(stat_buf))
 	{
-		if (read_return == 0 && !buffer_length(static_buffer) && !buffer_length(return_buffer))
+		if (rd_ret == 0 && !buffer_length(stat_buf) && !buffer_length(ret_buf))
 			return (NULL);
-		if (read_return != BUFFER_SIZE && !check_new_line(static_buffer))
+		if (rd_ret != BUFFER_SIZE && !check_new_line(stat_buf))
 			break ;
-		return_buffer = buffer_add_resize(return_buffer, static_buffer);
-		read_return = read(fd, static_buffer, BUFFER_SIZE);
-		read_fd_helper(return_buffer, static_buffer, read_return, (BUFFER_SIZE + 1));
+		ret_buf = buffer_add_resize(ret_buf, stat_buf);
+		rd_ret = read(fd, stat_buf, BUFFER_SIZE);
+		read_fd_helper(ret_buf, stat_buf, rd_ret, (BUFFER_SIZE + 1));
 	}
-	if (read_return != 0)
-		return_buffer = read_fd_helper(return_buffer, static_buffer, 0, 1);
-	line_remove(static_buffer);
-	return (return_buffer);
+	if (rd_ret != 0)
+		ret_buf = read_fd_helper(ret_buf, stat_buf, 0, 1);
+	line_remove(stat_buf);
+	return (ret_buf);
 }
 
 char	*read_fd_helper(char *ret_buff, char *stat_buff, int rdr, int flag)
 {
-	char *temp1;
-	char *temp2;
+	char	*temp1;
+	char	*temp2;
 
 	temp1 = NULL;
 	if (flag == 1)
@@ -80,7 +80,7 @@ char	*read_fd_helper(char *ret_buff, char *stat_buff, int rdr, int flag)
 		*(stat_buff + rdr) = '\0';
 	return (NULL);
 }
-/*returns reallocated return_buffer with added data from static_buffer*/
+
 char	*buffer_add_resize(char *return_buffer, char *static_buffer)
 {
 	char	*temp;
