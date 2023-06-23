@@ -29,7 +29,7 @@ char	*get_next_line(int fd)
 	char		*return_buffer;
 
 	return_buffer = NULL;
-	if (!static_buffer && (BUFFER_SIZE > 0) && (fd > 0))
+	if (!static_buffer && (BUFFER_SIZE > 0) && ((fd > 0) && (fd < 1000)))
 		static_buffer = malloc(BUFFER_SIZE + 1);
 	if (!static_buffer || (BUFFER_SIZE <= 0) || (fd <= 0))
 		return (NULL);
@@ -59,13 +59,12 @@ char	*read_fd(char *static_buffer, int fd)
 	}
 	while (!check_new_line(static_buffer))
 	{
-		if (read_return == 0 && !buffer_length(static_buffer))
+		if (read_return == 0 && !buffer_length(static_buffer) && !buffer_length(return_buffer))
 			return (NULL);
 		if (read_return != BUFFER_SIZE && !check_new_line(static_buffer))
 			break ;
 		return_buffer = buffer_add_resize(return_buffer, static_buffer);
 		read_return = read(fd, static_buffer, BUFFER_SIZE);
-//		*(static_buffer + read_return) = '\0';
 		read_fd_helper(return_buffer, static_buffer, read_return, (BUFFER_SIZE + 1));
 	}
 	if (read_return != 0)
