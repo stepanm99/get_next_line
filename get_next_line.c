@@ -1,27 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-/*TODO:
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
+/*   Updated: 2023/06/23 23:22:07 by smelicha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
-# endif
-*/
-
-//void check_leaks();
-
-int		check_new_line(char *buffer);
-void	line_remove(char *buffer);
-char	*line_from_buffer(char *buffer);
-int		buffer_length(char *buffer);
-char	*get_next_line(int fd);
-char	*read_fd(char *static_buffer, int fd);
-char	*read_fd_helper(char *ret_buff, char *stat_buff, int rdr, int flag);
-char	*buffer_add_resize(char *buffer, char *temp_buffer);
-int		buffer_to_buffer(char *buffer1, char *buffer2);
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
@@ -141,77 +130,4 @@ char	*line_from_buffer(char *static_buffer)
 		i++;
 	}
 	return (return_buffer);
-}
-
-int		check_new_line(char *buffer)
-{
-	int	i;
-	int	new_line_pos;
-
-	i = 0;
-	new_line_pos = 0;
-	if (!buffer)
-		return (0);
-	while (*(buffer + i) && !new_line_pos)
-	{
-		if (((*(buffer + i) == '\n') && !new_line_pos))
-			new_line_pos = i + 1;
-		if ((((*(buffer + i) == '\0')) && !new_line_pos) && (i < BUFFER_SIZE))
-			new_line_pos = i + 1;
-		i++;
-	}
-	return (new_line_pos);
-}
-
-void	line_remove(char *buffer)
-{
-	int	line_length;
-	int	i;
-
-	i = 0;
-	line_length = check_new_line(buffer);
-//	printf("\nfrom line_remove: %d\n", line_length);
-	if (line_length == 0)
-	{
-		while (i != BUFFER_SIZE)
-		{
-			*(buffer + i) = '\0';
-			i++;
-		}
-	}
-	while ((i + line_length) != BUFFER_SIZE)
-	{
-		*(buffer + i) = *(buffer + (i + line_length));
-		i++;
-	}
-	while (i != BUFFER_SIZE)
-	{
-		*(buffer + i) = '\0';
-		i++;
-	}
-}
-int		buffer_length(char *buffer)
-{
-	int	i;
-
-	i = 0;
-	if (buffer == NULL)
-		return (0);
-	while (*(buffer + i))
-		i++;
-	return (i);
-}
-int	buffer_to_buffer(char *buffer1, char *buffer2)
-{
-	int	i;
-
-	i = 0;
-	while (*(buffer2 + i))
-	{
-		*(buffer1 + i) = *(buffer2 + i);
-		i++;
-	}
-//	i++;
-	*(buffer1 + i) = '\0';
-	return (i);
 }
