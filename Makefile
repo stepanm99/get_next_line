@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
+#    By: stepanm <stepanm@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/06/12 20:40:39 by smelicha         ###   ########.fr        #
+#    Updated: 2023/06/24 03:37:27 by stepanm          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRC = get_next_line.c prog.c
+SRC = get_next_line.c get_next_line_utils.c
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror -g -D BUFFER_SIZE=10
@@ -19,7 +19,12 @@ FLAGS = -Wall -Wextra -Werror -g -D BUFFER_SIZE=10
 
 maintest:
 	@echo "~~~ Testing with main function ~~~"
-	@$(CC) $(SRC) prog.c $(FLAGS) -o prog
+	@$(CC) $(SRC) main.c $(FLAGS) -o prog
+	@./prog
+
+sanitize:
+	@echo "~~~ Testing with main function ~~~"
+	@$(CC) $(SRC) main.c $(FLAGS) -fsanitize=address -o prog
 	@./prog
 
 maindebug:
