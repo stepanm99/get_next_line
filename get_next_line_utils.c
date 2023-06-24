@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stepanm <stepanm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 22:21:17 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/23 23:57:05 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/24 04:11:11 by stepanm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,22 @@ int	buffer_to_buffer(char *buffer1, char *buffer2)
 	}
 	*(buffer1 + i) = '\0';
 	return (i);
+}
+
+char	*ft_calloc(int size)
+{
+	char	*ptr;
+	int		i;
+
+	i = 0;
+	ptr = malloc(size);
+	if (!ptr)
+		return (NULL);
+	while (size > 0)
+	{
+		*(ptr + i) = '\0';
+		i++;
+		size--;
+	}
+	return (ptr);
 }

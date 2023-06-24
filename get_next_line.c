@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stepanm <stepanm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/23 23:56:08 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/24 04:10:06 by stepanm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 
 	return_buffer = NULL;
 	if (!static_buffer && (BUFFER_SIZE > 0) && ((fd > 0) && (fd < 1000)))
-		static_buffer = malloc(BUFFER_SIZE + 1);
+		static_buffer = ft_calloc(BUFFER_SIZE + 1);
 	if (!static_buffer || (BUFFER_SIZE <= 0) || (fd <= 0))
 		return (NULL);
 	return_buffer = read_fd(static_buffer, fd);
@@ -92,7 +92,7 @@ char	*buffer_add_resize(char *return_buffer, char *static_buffer)
 	static_buffer_l = buffer_length(static_buffer);
 	if ((return_buffer_l + static_buffer_l) == 0)
 		return (NULL);
-	temp = malloc(return_buffer_l + static_buffer_l + 1);
+	temp = ft_calloc (return_buffer_l + static_buffer_l + 1);
 	if (!temp)
 		return (NULL);
 	*(temp + (return_buffer_l + static_buffer_l)) = '\0';
@@ -120,7 +120,7 @@ char	*line_from_buffer(char *static_buffer)
 	else if (!line_length && buffer_length(static_buffer))
 		line_length = buffer_length(static_buffer);
 	if (line_length > 0)
-		return_buffer = malloc(line_length + 1);
+		return_buffer = ft_calloc(line_length + 1);
 	else
 		return (NULL);
 	*(return_buffer + line_length) = '\0';

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stepanm <stepanm@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 21:22:26 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/23 23:20:56 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/24 04:11:24 by stepanm          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char	*read_fd(char *static_buffer, int fd);
 char	*read_fd_helper(char *ret_buff, char *stat_buff, int rdr, int flag);
 char	*buffer_add_resize(char *buffer, char *temp_buffer);
 int		buffer_to_buffer(char *buffer1, char *buffer2);
+char	*ft_calloc(int size);
 
 #endif
