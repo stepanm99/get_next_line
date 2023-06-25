@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: stepanm <stepanm@student.42.fr>            +#+  +:+       +#+         #
+#    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/06/24 03:37:27 by stepanm          ###   ########.fr        #
+#    Updated: 2023/06/25 21:47:15 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ sanitize:
 
 maindebug:
 	@echo "~~~ Testing with main function ~~~"
-	@gcc $(SRC) $(FLAGS) -o prog
+	@gcc $(SRC) main.c $(FLAGS) -o prog
 	@./prog | cat -e
-#	@valgrind ./prog
+	@valgrind --leak-check=full ./prog
 
 .PHONY: all clean fclean re test bonus maintest maindebug

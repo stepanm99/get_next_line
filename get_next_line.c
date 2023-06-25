@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stepanm <stepanm@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/24 04:10:06 by stepanm          ###   ########.fr       */
+/*   Updated: 2023/06/25 22:22:26 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*get_next_line(int fd)
 	if (!buffer_length(static_buffer) && static_buffer)
 	{
 		free(static_buffer);
+		static_buffer = NULL;
 		return (NULL);
 	}
 	return (NULL);
@@ -48,7 +49,7 @@ char	*read_fd(char *stat_buf, int fd)
 	}
 	while (!check_new_line(stat_buf))
 	{
-		if (rd_ret == 0 && !buffer_length(stat_buf) && !buffer_length(ret_buf))
+		if (rd_ret < 1 && !buffer_length(stat_buf) && !buffer_length(ret_buf))
 			return (NULL);
 		if (rd_ret != BUFFER_SIZE && !check_new_line(stat_buf))
 			break ;
