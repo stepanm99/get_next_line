@@ -6,20 +6,11 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/26 01:37:28 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/26 01:44:40 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	ft_bzero(void *b, size_t n)
-{
-	unsigned char	*ptr;
-
-	ptr = (unsigned char*)b;
-	while (n-- > 0)
-		*(ptr++) = 0;
-}
 
 char	*get_next_line(int fd)
 {
