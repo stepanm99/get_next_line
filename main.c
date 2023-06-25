@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:24:46 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/23 23:25:13 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/26 01:41:31 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ int	main(void)
 	fd = open("test.txt", O_RDONLY);
 //	printf("File descriptor : %d\n\n", fd);
 //	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
-	while (i < 1000)
+	while (i < 10)
 	{
 		buffer = get_next_line(fd);
-		if (buffer == NULL)
-			break ;
+//		if (buffer == NULL)
+//			break ;
 		write(1, buffer, buffer_length(buffer));
+//		printf("%s", buffer);
 		free(buffer);
 		i++;
 	}

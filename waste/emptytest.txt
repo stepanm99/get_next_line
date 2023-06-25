@@ -1,10 +1,21 @@
-gnl()
-{
-	persbuff
-	resbuff
-
-	if (check_new_line(persbuff))			//check if the persbuff has new line
-	{
-		buff_to_buff(resbuff, persbuff + check_new_line(persbuff))		//
-	}
-}
+Errors found:
+Error in test 1: get_next_line(0: "stdin"): expected: "0123456789\n", got: <NULL>
+Error in test 1: get_next_line(0: "stdin"): not enough memory allocated, needed: 12, reserved: 0
+Could not find the corresponding allocation or the pointer 0x0
+should reserve space for the string: "0123456789\n"
+Error in test 2: get_next_line(0: "stdin"): expected: "012345678\n", got: <NULL>
+Error in test 2: get_next_line(0: "stdin"): not enough memory allocated, needed: 11, reserved: 0
+Could not find the corresponding allocation or the pointer 0x0
+should reserve space for the string: "012345678\n"
+Error in test 3: get_next_line(0: "stdin"): expected: "90123456789\n", got: <NULL>
+Error in test 3: get_next_line(0: "stdin"): not enough memory allocated, needed: 13, reserved: 0
+Could not find the corresponding allocation or the pointer 0x0
+should reserve space for the string: "90123456789\n"
+Error in test 4: get_next_line(0: "stdin"): expected: "0123456789\n", got: <NULL>
+Error in test 4: get_next_line(0: "stdin"): not enough memory allocated, needed: 12, reserved: 0
+Could not find the corresponding allocation or the pointer 0x0
+should reserve space for the string: "0123456789\n"
+Error in test 5: get_next_line(0: "stdin"): expected: "xxxx\n", got: <NULL>
+Error in test 5: get_next_line(0: "stdin"): not enough memory allocated, needed: 6, reserved: 0
+Could not find the corresponding allocation or the pointer 0x0
+should reserve space for the string: "xxxx\n"

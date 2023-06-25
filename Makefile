@@ -6,7 +6,7 @@
 #    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/06/25 21:47:15 by smelicha         ###   ########.fr        #
+#    Updated: 2023/06/26 01:18:31 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 SRC = get_next_line.c get_next_line_utils.c
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g -D BUFFER_SIZE=10
+FLAGS = -Wall -Wextra -Werror -g -D BUFFER_SIZE=1
 
 
 maintest:

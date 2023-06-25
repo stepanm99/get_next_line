@@ -6,11 +6,20 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/25 22:22:26 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/26 01:37:28 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	ft_bzero(void *b, size_t n)
+{
+	unsigned char	*ptr;
+
+	ptr = (unsigned char*)b;
+	while (n-- > 0)
+		*(ptr++) = 0;
+}
 
 char	*get_next_line(int fd)
 {
@@ -18,10 +27,15 @@ char	*get_next_line(int fd)
 	char		*return_buffer;
 
 	return_buffer = NULL;
-	if (!static_buffer && (BUFFER_SIZE > 0) && ((fd > 0) && (fd < 1000)))
-		static_buffer = ft_calloc(BUFFER_SIZE + 1);
-	if (!static_buffer || (BUFFER_SIZE <= 0) || (fd <= 0))
+	if (((BUFFER_SIZE <= 0) || (fd < 0) || read(fd, 0, 0) < 0))
+	{
+		if(buffer_length(static_buffer) > 0)
+			free(static_buffer);
+		static_buffer = NULL;
 		return (NULL);
+	}
+	if (!static_buffer)
+		static_buffer = ft_calloc(BUFFER_SIZE + 1);
 	return_buffer = read_fd(static_buffer, fd);
 	if (buffer_length(return_buffer))
 		return (return_buffer);
