@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/26 01:44:40 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/26 21:41:14 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@ char	*get_next_line(int fd)
 	char		*return_buffer;
 
 	return_buffer = NULL;
-	if (((BUFFER_SIZE <= 0) || (fd < 0) || read(fd, 0, 0) < 0))
-	{
-		if(buffer_length(static_buffer) > 0)
-			free(static_buffer);
-		static_buffer = NULL;
-		return (NULL);
-	}
+	if (((BUFFER_SIZE <= 0) || (read(fd, 0, 0) < 0)) && static_buffer)
+		return (free(static_buffer), static_buffer = NULL, NULL);
+	if (((BUFFER_SIZE <= 0) || (read(fd, 0, 0) < 0)) && !static_buffer)
+		return (static_buffer = NULL, NULL);
+//	if ((BUFFER_SIZE <= 0) || read(fd, 0, 0) < 0)
+//	{
+//		if(buffer_length(static_buffer) > 0)
+//			free(static_buffer);
+//		static_buffer = NULL;
+//		return (NULL);
+//	}
 	if (!static_buffer)
 		static_buffer = ft_calloc(BUFFER_SIZE + 1);
 	return_buffer = read_fd(static_buffer, fd);
