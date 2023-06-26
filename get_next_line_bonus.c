@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/26 21:46:39 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/26 22:00:41 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*static_buffer;
+	static char	*static_buffer[FD_SETSIZE];
 	char		*return_buffer;
 
 	return_buffer = NULL;
-	if (((BUFFER_SIZE <= 0) || (read(fd, 0, 0) < 0)) && static_buffer)
-		return (free(static_buffer), static_buffer = NULL, NULL);
-	if (((BUFFER_SIZE <= 0) || (read(fd, 0, 0) < 0)) && !static_buffer)
-		return (static_buffer = NULL, NULL);
-	if (!static_buffer)
-		static_buffer = ft_calloc(BUFFER_SIZE + 1);
-	return_buffer = read_fd(static_buffer, fd);
+	if (((BUFFER_SIZE <= 0) || (read(fd, 0, 0) < 0)) && static_buffer[fd])
+		return (free(static_buffer[fd]), static_buffer[fd] = NULL, NULL);
+	if (((BUFFER_SIZE <= 0) || (read(fd, 0, 0) < 0)) && !static_buffer[fd])
+		return (static_buffer[fd] = NULL, NULL);
+	if (!static_buffer[fd])
+		static_buffer[fd] = ft_calloc(BUFFER_SIZE + 1);
+	return_buffer = read_fd(static_buffer[fd], fd);
 	if (buffer_length(return_buffer))
 		return (return_buffer);
-	if (!buffer_length(static_buffer) && static_buffer)
-		return (free(static_buffer), static_buffer = NULL, NULL);
+	if (!buffer_length(static_buffer[fd]) && static_buffer[fd])
+		return (free(static_buffer[fd]), static_buffer[fd] = NULL, NULL);
 	return (NULL);
 }
 
