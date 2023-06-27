@@ -6,7 +6,7 @@
 #    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/06/27 19:35:38 by smelicha         ###   ########.fr        #
+#    Updated: 2023/06/27 19:48:08 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC = get_next_line.c get_next_line_utils.c
 BONUS_SRC = get_next_line_bonus.c get_next_line_utils_bonus.c
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=1000
+FLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=1
 
 OBJ = $(SRC:.c=.o)
 OBJB = $(BONUS_SRC:.c=.o)
