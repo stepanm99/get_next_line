@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:24:46 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/26 01:41:31 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:06:22 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(void)
 		buffer = get_next_line(fd);
 //		if (buffer == NULL)
 //			break ;
-		write(1, buffer, buffer_length(buffer));
-//		printf("%s", buffer);
+//		write(1, buffer, buffer_length(buffer));
+		printf("%s", buffer);
 		free(buffer);
 		i++;
 	}
