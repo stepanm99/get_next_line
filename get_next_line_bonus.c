@@ -6,11 +6,11 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/26 22:00:41 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:40:17 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
