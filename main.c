@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:24:46 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/27 19:44:08 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/27 21:36:47 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,31 @@
 
 int	main(void)
 {
-	int		fd;
-	char	*buffer;
+	int		fd1;
+	int		fd2;
+	char	*buffer1;
+	char	*buffer2;
 	int		i;
 
 	i = 0;
-	buffer = NULL;
-	fd = open("test.txt", O_RDONLY);
-//	printf("File descriptor : %d\n\n", fd);
-//	printf("BUFFER_SIZE : %d\n\n", BUFFER_SIZE);
-	while (i < 10000)
+	buffer1 = NULL;
+	buffer2 = NULL;
+	fd1 = open("test.txt", O_RDONLY);
+	fd2 = open("test1.txt", O_RDONLY);
+
+	while (i < 10)
 	{
-		buffer = get_next_line(fd);
-		if (buffer == NULL)
-			break ;
-//		write(1, buffer, buffer_length(buffer));
-		printf("%s", buffer);
-		free(buffer);
+		buffer1 = get_next_line(fd1);
+		buffer2 = get_next_line(fd2);
+		printf("%s", buffer1);
+		printf("%s", buffer2);
+		if (buffer1 != NULL)
+			free(buffer1);
+		if (buffer2 != NULL)
+			free(buffer2);
 		i++;
 	}
-	close(fd);
-//	check_leaks();
+	close(fd1);
+	close(fd2);
 	return (0);
-
-
-	/*char	buffer[BUFFER_SIZE + 1];
-	char	*result;
-	int		i;
-
-	i = 0;
-	while (i < 4)
-	{
-		*(buffer + i) = i + '0';
-		i++;
-	}
-	*(buffer + i) = '\n';
-	i++;
-	while (i < BUFFER_SIZE)
-	{
-		*(buffer + i) = i + '0';
-		i++;
-	}
-	*(buffer + 8) = '\n';
-	printf("\n%s\n", buffer);
-	result = line_from_buffer(buffer);
-	printf("\nline from buffer: |%s|\n", result);
-	free(result);
-	line_remove(buffer);
-	printf("\n%s\n", buffer);
-	result = line_from_buffer(buffer);
-	printf("\nline from buffer: |%s|\n", result);
-	free(result);
-	line_remove(buffer);
-	printf("\n%s\n", buffer);
-	result = line_from_buffer(buffer);
-	printf("\nline from buffer: |%s|\n", result);
-	free(result);
-	line_remove(buffer);
-	printf("\n%s\n", buffer);
-	result = line_from_buffer(buffer);
-	printf("\nline from buffer: |%s|\n", result);
-	free(result);
-	line_remove(buffer);
-	printf("\n%s\n", buffer);
-	return (0);*/
 }

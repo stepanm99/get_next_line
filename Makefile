@@ -6,7 +6,7 @@
 #    By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 18:40:25 by smelicha          #+#    #+#              #
-#    Updated: 2023/06/27 19:48:08 by smelicha         ###   ########.fr        #
+#    Updated: 2023/06/27 21:38:31 by smelicha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,10 @@ bonus: $(OBJB)
 	@echo "Done"
 
 clean:
-	rm -f $(OBJ) $(OBJB)
+	@rm -f $(OBJ) $(OBJB)
 
 fclean: clean
-	rm -f $(NAME) $(NAMEB)
+	@rm -f $(NAME) $(NAMEB)
 
 re: fclean all
 

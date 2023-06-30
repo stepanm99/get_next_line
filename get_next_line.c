@@ -6,7 +6,7 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:21:49 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/27 18:06:48 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/30 19:15:39 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ char	*buffer_add_resize(char *return_buffer, char *static_buffer)
 	temp = ft_calloc (return_buffer_l + static_buffer_l + 1);
 	if (!temp)
 		return (NULL);
-	*(temp + (return_buffer_l + static_buffer_l)) = '\0';
 	if (return_buffer)
 	{
 		buffer_to_buffer(temp, return_buffer);
