@@ -6,11 +6,13 @@
 /*   By: smelicha <smelicha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 23:24:46 by smelicha          #+#    #+#             */
-/*   Updated: 2023/06/27 21:36:47 by smelicha         ###   ########.fr       */
+/*   Updated: 2023/06/30 19:20:51 by smelicha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
+#include <fcntl.h>
 
 int	main(void)
 {
